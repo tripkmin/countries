@@ -1,16 +1,9 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "baseUrl": "./",
-    "paths": {
-      "components/*": ["src/components/*"],
-      "styles/*": ["src/styles/*"],
-      "layouts/*": ["src/layouts/*"],
-      "hooks/*": ["src/hooks/*"],
-      "assets/*": ["src/assets/*"]
-    },
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
