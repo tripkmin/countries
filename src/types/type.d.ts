@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface NationT {
   name: string;
   topLevelDomain: string[];
@@ -64,4 +66,8 @@ export interface Translations {
   ja: string;
   it: string;
   hu: string;
+}
+
+export interface LayoutProps {
+  children?: ReactNode;
 }
