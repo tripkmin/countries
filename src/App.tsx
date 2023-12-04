@@ -6,6 +6,7 @@ import { IconCapital, IconPeople } from 'assets/icons';
 import { useEffect, useState } from 'react';
 import JSONdata from 'assets/data.json';
 import { NationT } from './types/type';
+import { formatter } from './utils/utils';
 
 function App() {
   const [data, setData] = useState<NationT[]>([]);
@@ -29,20 +30,22 @@ function App() {
               <FlagBox>
                 <Flag src={nation.flags.svg}></Flag>
               </FlagBox>
-              <NationMain>
-                <Region>{nation.region}</Region>
-                <NationName>{nation.name}</NationName>
-              </NationMain>
-              <NationFooter>
-                <NationDetail>
-                  <IconPeople />
-                  <Detail>{nation.population}</Detail>
-                </NationDetail>
-                <NationDetail>
-                  <IconCapital />
-                  <Detail>{nation.capital}</Detail>
-                </NationDetail>
-              </NationFooter>
+              <NationDescription>
+                <NationMain>
+                  <Region>{nation.region}</Region>
+                  <NationName>{nation.name}</NationName>
+                </NationMain>
+                <NationFooter>
+                  <NationDetail>
+                    <IconPeople />
+                    <Detail>{formatter(nation.population, 0)}</Detail>
+                  </NationDetail>
+                  <NationDetail>
+                    <IconCapital />
+                    <Detail>{nation.capital || '-'}</Detail>
+                  </NationDetail>
+                </NationFooter>
+              </NationDescription>
             </Card>
           ))}
         </CardList>
@@ -76,22 +79,37 @@ const CardList = styled.div`
   margin: auto;
   width: 1100px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
   justify-items: center;
   grid-gap: 1rem;
 
   @media screen and (max-width: ${size.desktop}) {
-    margin: auto;
     width: 100%;
-    margin: 0;
-    /* padding: 0 7rem; */
-    grid-template-columns: repeat(3, 1fr);
+    margin: auto;
+    grid-template-columns: repeat(3, 250px);
+    grid-gap: 1.5rem;
+  }
+
+  @media screen and (max-width: ${size.tablet}) {
+    grid-template-columns: repeat(2, 260px);
+    grid-gap: 1.5rem;
+  }
+
+  @media screen and (max-width: ${size.mobile}) {
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem;
   }
 `;
 
 const Card = styled.div`
   width: 240px;
-  padding: 25px 15px;
+  padding: 20px 15px 30px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1.5rem;
+  text-align: center;
   border-radius: 10px;
   box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
@@ -103,6 +121,15 @@ const Card = styled.div`
     -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.2);
   }
+
+  @media screen and (max-width: ${size.mobile}) {
+    width: 100%;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+  }
 `;
 
 const FlagBox = styled.div`
@@ -111,6 +138,11 @@ const FlagBox = styled.div`
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
+
+  @media screen and (max-width: ${size.mobile}) {
+    max-width: 150px;
+    max-height: 100px;
+  }
 `;
 
 const Flag = styled.img`
@@ -118,13 +150,38 @@ const Flag = styled.img`
   height: 100%;
 `;
 
-const NationMain = styled.div`
+const NationDescription = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 1.5rem;
+  flex-grow: 1;
+
+  & > :first-child::after {
+    content: '';
+    width: 100%;
+    border: 1px solid #eee;
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  @media screen and (max-width: ${size.mobile}) {
+    gap: 0.5rem;
+
+    & > :first-child::after {
+      display: none;
+    }
+  }
+`;
+
+const NationMain = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid ${color.veryLightGray};
+
+  @media screen and (max-width: ${size.mobile}) {
+    gap: 0.25rem;
+  }
 `;
 
 const Region = styled.h2`
@@ -132,17 +189,30 @@ const Region = styled.h2`
   font-size: 1em;
   color: ${color.lightGray};
   letter-spacing: 0.25rem;
+
+  @media screen and (max-width: ${size.mobile}) {
+    font-size: 0.9rem;
+  }
 `;
 
 const NationName = styled.h1`
   font-size: 1.4rem;
+  line-height: 150%;
+
+  @media screen and (max-width: ${size.mobile}) {
+    font-size: 1.2rem;
+  }
 `;
 
 const NationFooter = styled.div`
   display: flex;
   justify-content: center;
   gap: 2.2rem;
-  padding: 1.5rem 0 1rem 0;
+
+  @media screen and (max-width: ${size.mobile}) {
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
 `;
 
 const NationDetail = styled.div`
@@ -150,10 +220,20 @@ const NationDetail = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-`;
-const Detail = styled.div``;
-export default App;
 
-/* 
-여기서 grid의 width가 4개를 수용할 수 있는 범위를 넘을 경우 3개로 줄고, 3개를 수용할 수 있는 범위를 넘을 경우 2개로 줄일 수 있는 방법은?
-*/
+  @media screen and (max-width: ${size.mobile}) {
+    flex-direction: row;
+  }
+`;
+
+const Detail = styled.div`
+  max-width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media screen and (max-width: ${size.mobile}) {
+    max-width: 150px;
+  }
+`;
+export default App;

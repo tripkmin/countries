@@ -11,5 +11,6 @@ export const timer = {
 
 export const size = {
   mobile: '600px',
+  tablet: '850px',
   desktop: '1100px',
 };
