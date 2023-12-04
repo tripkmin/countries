@@ -7,8 +7,6 @@ export default function NationCardList({ children }: LayoutProps) {
 }
 
 const CardList = styled.div`
-  margin: auto;
-  width: 1100px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
@@ -16,8 +14,6 @@ const CardList = styled.div`
   grid-gap: 1rem;
 
   @media screen and (max-width: ${size.desktop}) {
-    width: 100%;
-    margin: auto;
     grid-template-columns: repeat(3, 250px);
     grid-gap: 1.5rem;
   }

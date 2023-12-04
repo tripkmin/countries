@@ -15,6 +15,9 @@ export default function Select({ options }: SelectProps) {
 }
 
 const SelectBox = styled.select`
-  width: 200px;
-  padding: 1rem 4rem;
+  width: 100px;
+  font-size: 1.2rem;
+  padding: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 10px;
 `;

@@ -16,5 +16,6 @@ const SearchBox = styled.form`
   border: 1px solid #aaa;
   border-radius: 10px;
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;
 `;
