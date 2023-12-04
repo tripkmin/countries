@@ -8,7 +8,6 @@ export interface NationT {
   altSpellings?: string[];
   subregion: string;
   region: string;
-  // region: Region;
   population: number;
   latlng?: number[];
   demonym: string;

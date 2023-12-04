@@ -6,7 +6,8 @@
       "styles/*": ["src/styles/*"],
       "layouts/*": ["src/layouts/*"],
       "hooks/*": ["src/hooks/*"],
-      "assets/*": ["src/assets/*"]
+      "assets/*": ["src/assets/*"],
+      "utils/*": ["src/utils/*"]
     }
   }
 }
