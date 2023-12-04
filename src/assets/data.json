@@ -1575,12 +1575,7 @@
     "alpha3Code": "BMU",
     "callingCodes": ["1"],
     "capital": "Hamilton",
-    "altSpellings": [
-      "BM",
-      "The Islands of Bermuda",
-      "The Bermudas",
-      "Somers Isles"
-    ],
+    "altSpellings": ["BM", "The Islands of Bermuda", "The Bermudas", "Somers Isles"],
     "subregion": "Northern America",
     "region": "Americas",
     "population": 63903,
@@ -2302,12 +2297,7 @@
     "alpha3Code": "VIR",
     "callingCodes": ["1 340"],
     "capital": "Charlotte Amalie",
-    "altSpellings": [
-      "VI",
-      "USVI",
-      "American Virgin Islands",
-      "U.S. Virgin Islands"
-    ],
+    "altSpellings": ["VI", "USVI", "American Virgin Islands", "U.S. Virgin Islands"],
     "subregion": "Caribbean",
     "region": "Americas",
     "population": 106290,
@@ -2976,11 +2966,7 @@
     "alpha3Code": "CAF",
     "callingCodes": ["236"],
     "capital": "Bangui",
-    "altSpellings": [
-      "CF",
-      "Central African Republic",
-      "République centrafricaine"
-    ],
+    "altSpellings": ["CF", "Central African Republic", "République centrafricaine"],
     "subregion": "Middle Africa",
     "region": "Africa",
     "population": 4829764,
@@ -3333,11 +3319,7 @@
     "alpha3Code": "CCK",
     "callingCodes": ["61"],
     "capital": "West Island",
-    "altSpellings": [
-      "CC",
-      "Territory of the Cocos (Keeling) Islands",
-      "Keeling Islands"
-    ],
+    "altSpellings": ["CC", "Territory of the Cocos (Keeling) Islands", "Keeling Islands"],
     "subregion": "Australia and New Zealand",
     "region": "Oceania",
     "population": 550,
@@ -3842,12 +3824,7 @@
     "alpha3Code": "HRV",
     "callingCodes": ["385"],
     "capital": "Zagreb",
-    "altSpellings": [
-      "HR",
-      "Hrvatska",
-      "Republic of Croatia",
-      "Republika Hrvatska"
-    ],
+    "altSpellings": ["HR", "Hrvatska", "Republic of Croatia", "Republika Hrvatska"],
     "subregion": "Southern Europe",
     "region": "Europe",
     "population": 4047200,
@@ -4183,12 +4160,7 @@
     "alpha3Code": "DNK",
     "callingCodes": ["45"],
     "capital": "Copenhagen",
-    "altSpellings": [
-      "DK",
-      "Danmark",
-      "Kingdom of Denmark",
-      "Kongeriget Danmark"
-    ],
+    "altSpellings": ["DK", "Danmark", "Kingdom of Denmark", "Kongeriget Danmark"],
     "subregion": "Northern Europe",
     "region": "Europe",
     "population": 5831404,
@@ -4340,12 +4312,7 @@
     "alpha3Code": "DMA",
     "callingCodes": ["1"],
     "capital": "Roseau",
-    "altSpellings": [
-      "DM",
-      "Dominique",
-      "Wai‘tu kubuli",
-      "Commonwealth of Dominica"
-    ],
+    "altSpellings": ["DM", "Dominique", "Wai‘tu kubuli", "Commonwealth of Dominica"],
     "subregion": "Caribbean",
     "region": "Americas",
     "population": 71991,
@@ -4615,11 +4582,7 @@
     "alpha3Code": "SLV",
     "callingCodes": ["503"],
     "capital": "San Salvador",
-    "altSpellings": [
-      "SV",
-      "Republic of El Salvador",
-      "República de El Salvador"
-    ],
+    "altSpellings": ["SV", "Republic of El Salvador", "República de El Salvador"],
     "subregion": "Central America",
     "region": "Americas",
     "population": 6486201,
@@ -5440,12 +5403,7 @@
     "alpha3Code": "PYF",
     "callingCodes": ["689"],
     "capital": "Papeetē",
-    "altSpellings": [
-      "PF",
-      "Polynésie française",
-      "French Polynesia",
-      "Pōrīnetia Farāni"
-    ],
+    "altSpellings": ["PF", "Polynésie française", "French Polynesia", "Pōrīnetia Farāni"],
     "subregion": "Polynesia",
     "region": "Oceania",
     "population": 280904,
@@ -5753,11 +5711,7 @@
     "alpha3Code": "DEU",
     "callingCodes": ["49"],
     "capital": "Berlin",
-    "altSpellings": [
-      "DE",
-      "Federal Republic of Germany",
-      "Bundesrepublik Deutschland"
-    ],
+    "altSpellings": ["DE", "Federal Republic of Germany", "Bundesrepublik Deutschland"],
     "subregion": "Central Europe",
     "region": "Europe",
     "population": 83240525,
@@ -5945,12 +5899,7 @@
     "alpha3Code": "GRC",
     "callingCodes": ["30"],
     "capital": "Athens",
-    "altSpellings": [
-      "GR",
-      "Elláda",
-      "Hellenic Republic",
-      "Ελληνική Δημοκρατία"
-    ],
+    "altSpellings": ["GR", "Elláda", "Hellenic Republic", "Ελληνική Δημοκρατία"],
     "subregion": "Southern Europe",
     "region": "Europe",
     "population": 10715549,
@@ -6443,11 +6392,7 @@
     "alpha3Code": "GNB",
     "callingCodes": ["245"],
     "capital": "Bissau",
-    "altSpellings": [
-      "GW",
-      "Republic of Guinea-Bissau",
-      "República da Guiné-Bissau"
-    ],
+    "altSpellings": ["GW", "Republic of Guinea-Bissau", "República da Guiné-Bissau"],
     "subregion": "Western Africa",
     "region": "Africa",
     "population": 1967998,
@@ -6592,12 +6537,7 @@
     "alpha3Code": "HTI",
     "callingCodes": ["509"],
     "capital": "Port-au-Prince",
-    "altSpellings": [
-      "HT",
-      "Republic of Haiti",
-      "République d'Haïti",
-      "Repiblik Ayiti"
-    ],
+    "altSpellings": ["HT", "Republic of Haiti", "République d'Haïti", "Repiblik Ayiti"],
     "subregion": "Caribbean",
     "region": "Americas",
     "population": 11402533,
@@ -7236,11 +7176,7 @@
     "alpha3Code": "IRN",
     "callingCodes": ["98"],
     "capital": "Tehran",
-    "altSpellings": [
-      "IR",
-      "Islamic Republic of Iran",
-      "Jomhuri-ye Eslāmi-ye Irān"
-    ],
+    "altSpellings": ["IR", "Islamic Republic of Iran", "Jomhuri-ye Eslāmi-ye Irān"],
     "subregion": "Southern Asia",
     "region": "Asia",
     "population": 83992953,
@@ -7367,12 +7303,7 @@
     "alpha3Code": "IRL",
     "callingCodes": ["353"],
     "capital": "Dublin",
-    "altSpellings": [
-      "IE",
-      "Éire",
-      "Republic of Ireland",
-      "Poblacht na hÉireann"
-    ],
+    "altSpellings": ["IE", "Éire", "Republic of Ireland", "Poblacht na hÉireann"],
     "subregion": "Northern Europe",
     "region": "Europe",
     "population": 4994724,
@@ -8659,11 +8590,7 @@
     "alpha3Code": "LIE",
     "callingCodes": ["423"],
     "capital": "Vaduz",
-    "altSpellings": [
-      "LI",
-      "Principality of Liechtenstein",
-      "Fürstentum Liechtenstein"
-    ],
+    "altSpellings": ["LI", "Principality of Liechtenstein", "Fürstentum Liechtenstein"],
     "subregion": "Central Europe",
     "region": "Europe",
     "population": 38137,
@@ -9399,11 +9326,7 @@
     "alpha3Code": "MHL",
     "callingCodes": ["692"],
     "capital": "Majuro",
-    "altSpellings": [
-      "MH",
-      "Republic of the Marshall Islands",
-      "Aolepān Aorōkin M̧ajeļ"
-    ],
+    "altSpellings": ["MH", "Republic of the Marshall Islands", "Aolepān Aorōkin M̧ajeļ"],
     "subregion": "Micronesia",
     "region": "Oceania",
     "population": 59194,
@@ -10707,13 +10630,7 @@
     "latlng": [-41, 174],
     "demonym": "New Zealander",
     "area": 270467,
-    "timezones": [
-      "UTC-11:00",
-      "UTC-10:00",
-      "UTC+12:00",
-      "UTC+12:45",
-      "UTC+13:00"
-    ],
+    "timezones": ["UTC-11:00", "UTC-10:00", "UTC+12:00", "UTC+12:45", "UTC+13:00"],
     "nativeName": "New Zealand",
     "numericCode": "554",
     "flags": {
@@ -10896,12 +10813,7 @@
     "alpha3Code": "NGA",
     "callingCodes": ["234"],
     "capital": "Abuja",
-    "altSpellings": [
-      "NG",
-      "Nijeriya",
-      "Naíjíríà",
-      "Federal Republic of Nigeria"
-    ],
+    "altSpellings": ["NG", "Nijeriya", "Naíjíríà", "Federal Republic of Nigeria"],
     "subregion": "Western Africa",
     "region": "Africa",
     "population": 206139587,
@@ -11026,11 +10938,7 @@
     "alpha3Code": "NFK",
     "callingCodes": ["672"],
     "capital": "Kingston",
-    "altSpellings": [
-      "NF",
-      "Territory of Norfolk Island",
-      "Teratri of Norf'k Ailen"
-    ],
+    "altSpellings": ["NF", "Territory of Norfolk Island", "Teratri of Norf'k Ailen"],
     "subregion": "Australia and New Zealand",
     "region": "Oceania",
     "population": 2302,
@@ -11827,11 +11735,7 @@
     "alpha3Code": "PHL",
     "callingCodes": ["63"],
     "capital": "Manila",
-    "altSpellings": [
-      "PH",
-      "Republic of the Philippines",
-      "Repúblika ng Pilipinas"
-    ],
+    "altSpellings": ["PH", "Republic of the Philippines", "Repúblika ng Pilipinas"],
     "subregion": "South-Eastern Asia",
     "region": "Asia",
     "population": 109581085,
@@ -12009,12 +11913,7 @@
     "alpha3Code": "PRT",
     "callingCodes": ["351"],
     "capital": "Lisbon",
-    "altSpellings": [
-      "PT",
-      "Portuguesa",
-      "Portuguese Republic",
-      "República Portuguesa"
-    ],
+    "altSpellings": ["PT", "Portuguesa", "Portuguese Republic", "República Portuguesa"],
     "subregion": "Southern Europe",
     "region": "Europe",
     "population": 10305564,
@@ -12891,10 +12790,7 @@
     "alpha3Code": "SPM",
     "callingCodes": ["508"],
     "capital": "Saint-Pierre",
-    "altSpellings": [
-      "PM",
-      "Collectivité territoriale de Saint-Pierre-et-Miquelon"
-    ],
+    "altSpellings": ["PM", "Collectivité territoriale de Saint-Pierre-et-Miquelon"],
     "subregion": "Northern America",
     "region": "Americas",
     "population": 6069,
@@ -13074,11 +12970,7 @@
     "alpha3Code": "SMR",
     "callingCodes": ["378"],
     "capital": "City of San Marino",
-    "altSpellings": [
-      "SM",
-      "Republic of San Marino",
-      "Repubblica di San Marino"
-    ],
+    "altSpellings": ["SM", "Republic of San Marino", "Repubblica di San Marino"],
     "subregion": "Southern Europe",
     "region": "Europe",
     "population": 33938,
@@ -14256,11 +14148,7 @@
     "alpha3Code": "LKA",
     "callingCodes": ["94"],
     "capital": "Sri Jayawardenepura Kotte",
-    "altSpellings": [
-      "LK",
-      "ilaṅkai",
-      "Democratic Socialist Republic of Sri Lanka"
-    ],
+    "altSpellings": ["LK", "ilaṅkai", "Democratic Socialist Republic of Sri Lanka"],
     "subregion": "Southern Asia",
     "region": "Asia",
     "population": 21919000,
@@ -14908,13 +14796,7 @@
     "alpha3Code": "TWN",
     "callingCodes": ["886"],
     "capital": "Taipei",
-    "altSpellings": [
-      "TW",
-      "Táiwān",
-      "Republic of China",
-      "中華民國",
-      "Zhōnghuá Mínguó"
-    ],
+    "altSpellings": ["TW", "Táiwān", "Republic of China", "中華民國", "Zhōnghuá Mínguó"],
     "subregion": "Eastern Asia",
     "region": "Asia",
     "population": 23503349,
@@ -15241,12 +15123,7 @@
     "alpha3Code": "TGO",
     "callingCodes": ["228"],
     "capital": "Lomé",
-    "altSpellings": [
-      "TG",
-      "Togolese",
-      "Togolese Republic",
-      "République Togolaise"
-    ],
+    "altSpellings": ["TG", "Togolese", "Togolese Republic", "République Togolaise"],
     "subregion": "Western Africa",
     "region": "Africa",
     "population": 8278737,
@@ -15491,11 +15368,7 @@
     "alpha3Code": "TUN",
     "callingCodes": ["216"],
     "capital": "Tunis",
-    "altSpellings": [
-      "TN",
-      "Republic of Tunisia",
-      "al-Jumhūriyyah at-Tūnisiyyah"
-    ],
+    "altSpellings": ["TN", "Republic of Tunisia", "al-Jumhūriyyah at-Tūnisiyyah"],
     "subregion": "Northern Africa",
     "region": "Africa",
     "population": 11818618,
@@ -15572,12 +15445,7 @@
     "alpha3Code": "TUR",
     "callingCodes": ["90"],
     "capital": "Ankara",
-    "altSpellings": [
-      "TR",
-      "Turkiye",
-      "Republic of Turkey",
-      "Türkiye Cumhuriyeti"
-    ],
+    "altSpellings": ["TR", "Turkiye", "Republic of Turkey", "Türkiye Cumhuriyeti"],
     "subregion": "Western Asia",
     "region": "Asia",
     "population": 84339067,

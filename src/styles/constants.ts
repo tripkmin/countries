@@ -1,4 +1,7 @@
-export const color = {};
+export const color = {
+  lightGray: '#aaaaaa',
+  veryLightGray: '#eeeeee',
+};
 
 export const timer = {
   default: '0.3s',
@@ -8,5 +11,5 @@ export const timer = {
 
 export const size = {
   mobile: '600px',
-  desktop: '1024px',
+  desktop: '1100px',
 };
