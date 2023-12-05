@@ -1,10 +1,11 @@
 import Main from 'layouts/Main';
 import Navbar from 'components/Navbar';
-import { useParams } from 'react-router-dom';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { NationT } from 'types/type';
 import { getLanguages, getSymbols, getTranslations, mapCca3ToName } from 'utils/utils';
 import {
+  IconArrowBack,
   IconBorderNation,
   IconCapital,
   IconCurrency,
@@ -23,11 +24,15 @@ import { GoogleMaps } from 'components/Maps';
 import { size, timer } from 'styles/constants';
 import NationMapCard from 'components/NationMapCard';
 import Footer from 'components/Footer';
+import { useEffect, useState } from 'react';
+import useInterval from 'hooks/useInterval';
+import { Button } from 'components/common/Button';
 
 export default function Nation() {
+  const [transCount, setTransCount] = useState(0);
   const { name } = useParams();
 
-  const { data, error } = useQuery<NationT>({
+  const { data } = useQuery<NationT>({
     queryKey: ['nation', name],
     queryFn: async () => {
       try {
@@ -61,6 +66,16 @@ export default function Nation() {
     data: data?.borders?.map(fifa => mapCca3ToName(fifa)),
   };
 
+  const globalNames = getTranslations(data?.translations) || [];
+
+  useInterval(() => {
+    setTransCount(prev => (prev >= globalNames.length - 1 ? 0 : prev + 1));
+  }, 2000);
+
+  useEffect(() => {
+    setTransCount(0);
+  }, [name]);
+
   return (
     <>
       <Navbar />
@@ -68,12 +83,16 @@ export default function Nation() {
         <HeadSection>
           <Flag src={data?.flags.svg}></Flag>
           {/* <CoatOfArms src={data?.coatOfArms.svg}></CoatOfArms> */}
-          <Test>
-            {getTranslations(data?.translations)?.map(el => (
-              <p>{el}</p>
-            ))}
-          </Test>
-          <NationName>{data?.name.official}</NationName>
+          <Header>
+            <GlobalNamesBox>
+              <GlobalNames $transY={transCount}>
+                {getTranslations(data?.translations)?.map(globalName => (
+                  <p>{globalName}</p>
+                ))}
+              </GlobalNames>
+            </GlobalNamesBox>
+            <NationName>{data?.name.official}</NationName>
+          </Header>
         </HeadSection>
         <InfoSection>
           <SubHead>INFO</SubHead>
@@ -84,11 +103,20 @@ export default function Nation() {
           </NationInfoList>
         </InfoSection>
         <MapSection>
+          <SubHead>MAPS</SubHead>
           <GoogleMapsWrapper>
             <GoogleMaps latlng={data?.latlng}></GoogleMaps>
           </GoogleMapsWrapper>
           <NationMapCard borderData={mapData}></NationMapCard>
         </MapSection>
+        <ButtonSection>
+          <Link to="/">
+            <Button>
+              <IconArrowBack />
+              Back
+            </Button>
+          </Link>
+        </ButtonSection>
       </Main>
       <Footer />
     </>
@@ -96,11 +124,11 @@ export default function Nation() {
 }
 
 const HeadSection = styled.section`
-  margin: 100px 0;
+  margin: 50px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
   position: relative;
   /* border-bottom: 1px solid #aaa; */
 
@@ -113,6 +141,7 @@ const HeadSection = styled.section`
   }
 `;
 
+const Header = styled.div``;
 const Flag = styled.img`
   width: 350px;
   border-radius: 10px;
@@ -122,14 +151,23 @@ const CoatOfArms = styled.img`
   width: 75px;
 `;
 
-const Test = styled.div`
-  height: 1.8rem;
+const GlobalNamesBox = styled.div`
   overflow: hidden;
+`;
+
+const GlobalNames = styled.div<{ $transY: number }>`
+  height: 28px;
   text-align: center;
   transition: all ${timer.default};
+  transform: translateY(${props => props.$transY * -100}%);
+
+  p {
+    height: 28px;
+  }
 `;
 
 const NationName = styled.h1`
+  line-height: 120%;
   font-size: 2.5rem;
   text-align: center;
   text-wrap: balance;
@@ -145,6 +183,15 @@ const InfoSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  /* position: relative;
+
+  &::after {
+    content: '';
+    width: 80%;
+    border-bottom: 1px solid #eee;
+    position: absolute;
+    bottom: -20%;
+  } */
 `;
 const NationInfoList = styled.div`
   display: grid;
@@ -160,4 +207,13 @@ const NationInfoList = styled.div`
   }
 `;
 
-const MapSection = styled.section``;
+const MapSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+`;
+
+const ButtonSection = styled.section`
+  display: flex;
+  justify-content: flex-end;
+`;
