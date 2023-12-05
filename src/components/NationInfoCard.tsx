@@ -44,7 +44,7 @@ const SubHeader = styled.h2`
 `;
 
 const InfoHeader = styled.h1`
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
   line-height: 150%;
 `;

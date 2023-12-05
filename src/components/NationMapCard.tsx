@@ -17,9 +17,11 @@ export default function NationMapCard({ borderData }: NationMapCardProps) {
         <SubHeader>{borderData.key}</SubHeader>
       </MapSubHeader>
       <MapHeader>
-        {borderData.data?.map(border => (
-          <Badge to={`/nation/${border}`}>{border}</Badge>
-        ))}
+        {borderData.data ? (
+          borderData.data?.map(border => <Badge to={`/nation/${border}`}>{border}</Badge>)
+        ) : (
+          <p>There are no border countries</p>
+        )}
       </MapHeader>
     </NationMapCardBox>
   );

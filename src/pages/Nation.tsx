@@ -82,7 +82,6 @@ export default function Nation() {
       <Main>
         <HeadSection>
           <Flag src={data?.flags.svg}></Flag>
-          {/* <CoatOfArms src={data?.coatOfArms.svg}></CoatOfArms> */}
           <Header>
             <GlobalNamesBox>
               <GlobalNames $transY={transCount}>
@@ -124,21 +123,14 @@ export default function Nation() {
 }
 
 const HeadSection = styled.section`
-  margin: 50px 0;
+  padding: 50px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
   position: relative;
-  /* border-bottom: 1px solid #aaa; */
 
-  &::after {
-    content: '';
-    width: 80%;
-    border-bottom: 1px solid #eee;
-    position: absolute;
-    bottom: -20%;
-  }
+  border-radius: 20px;
 `;
 
 const Header = styled.div``;
@@ -183,15 +175,6 @@ const InfoSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  /* position: relative;
-
-  &::after {
-    content: '';
-    width: 80%;
-    border-bottom: 1px solid #eee;
-    position: absolute;
-    bottom: -20%;
-  } */
 `;
 const NationInfoList = styled.div`
   display: grid;

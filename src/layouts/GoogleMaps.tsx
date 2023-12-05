@@ -10,7 +10,7 @@ export const GoogleMapsWrapper = ({ children }: LayoutProps) => {
   if (!apiKey) {
     return (
       <Warning>
-        <strong>Cannot display the map:</strong>
+        <strong>Cannot display the map</strong>
         <p>google maps api key missing</p>
       </Warning>
     );
