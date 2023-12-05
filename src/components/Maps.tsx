@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
 const DEFAULT_ZOOM = 7;
 
@@ -16,7 +17,13 @@ export const GoogleMaps = ({ latlng }: GoogleMapsProps) => {
         zoom: DEFAULT_ZOOM,
       });
     }
-  }, [ref]);
+  }, [ref, latlng]);
 
-  return <div ref={ref} style={{ width: '1000px', height: '700px' }} />;
+  return <Map ref={ref} />;
 };
+
+const Map = styled.div`
+  width: 100%;
+  height: 700px;
+  border-radius: 15px;
+`;

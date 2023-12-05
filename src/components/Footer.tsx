@@ -19,7 +19,6 @@ const FooterBox = styled.footer`
 
   @media screen and (max-width: ${size.desktop}) {
     width: 100%;
-    /* margin: 0;
-    padding: 0 1rem; */
+    padding: 2rem 1.2rem;
   }
 `;

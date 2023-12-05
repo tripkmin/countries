@@ -15,9 +15,10 @@ const MainBox = styled.main`
   margin: 3rem auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
 
   @media screen and (max-width: ${size.desktop}) {
     width: 100%;
+    padding: 0 1.2rem;
   }
 `;
