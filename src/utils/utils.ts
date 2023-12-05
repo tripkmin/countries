@@ -1,3 +1,4 @@
+import { cca3Mappings } from 'assets/cca3Mappings';
 import { Currencies, Languages, Name, Translations } from 'types/type';
 
 export const formatter = (num: number, digits: number) => {
@@ -51,4 +52,9 @@ export const getTranslations = (translations: Translations | undefined) => {
   const names = keys.map(key => translations[key]?.official);
 
   return names;
+};
+
+export const mapCca3ToName = (cca3: string) => {
+  const findData = cca3Mappings.find(data => data.cca3 === cca3);
+  return findData?.official;
 };
