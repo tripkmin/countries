@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { size } from 'styles/constants';
 
 export default function Navbar() {
   return (
     <Header>
-      <p>Hello world</p>
+      <Logo to="/">Where in the world?</Logo>
       <button>button</button>
     </Header>
   );
@@ -26,3 +27,5 @@ const Header = styled.header`
     padding: 0 1rem;
   }
 `;
+
+const Logo = styled(Link)``;

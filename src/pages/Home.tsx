@@ -8,6 +8,7 @@ import { NationT } from 'src/types/type';
 import Navbar from 'components/Navbar';
 import Search from 'components/common/Search';
 import Select from 'components/common/Select';
+import Footer from 'components/Footer';
 
 export default function Home() {
   const [data, setData] = useState<NationT[]>([]);
@@ -30,6 +31,7 @@ export default function Home() {
           ))}
         </NationCardList>
       </Main>
+      <Footer></Footer>
     </>
   );
 }

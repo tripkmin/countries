@@ -7,7 +7,6 @@ export default function Option({ children }: LayoutProps) {
 }
 
 const OptionBox = styled.div`
-  margin: 2rem auto;
   gap: 2rem;
   display: flex;
   justify-content: space-between;

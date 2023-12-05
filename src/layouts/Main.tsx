@@ -12,7 +12,10 @@ export default function Main({ children }: MainLayoutProps) {
 
 const MainBox = styled.main`
   width: 1100px;
-  margin: 0 auto;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
   @media screen and (max-width: ${size.desktop}) {
     width: 100%;
