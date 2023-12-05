@@ -11,14 +11,14 @@ interface NationCardProps {
 
 export default function NationCard({ nation }: NationCardProps) {
   return (
-    <Card to={`/nation/${nation.name}`}>
+    <Card to={`/nation/${nation.name.official}`}>
       <FlagBox>
-        <Flag src={nation.flags.svg} alt={`${nation.name} flag`}></Flag>
+        <Flag src={nation.flags.svg} alt={nation.flags.alt}></Flag>
       </FlagBox>
       <NationDescription>
         <NationMain>
           <Region>{nation.region}</Region>
-          <NationName>{nation.name}</NationName>
+          <NationName>{nation.name.official}</NationName>
         </NationMain>
         <NationFooter>
           <NationDetail>
@@ -27,7 +27,7 @@ export default function NationCard({ nation }: NationCardProps) {
           </NationDetail>
           <NationDetail>
             <IconCapital />
-            <Detail>{nation.capital || '-'}</Detail>
+            <Detail>{nation.capital?.join('') || '-'}</Detail>
           </NationDetail>
         </NationFooter>
       </NationDescription>

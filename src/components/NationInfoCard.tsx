@@ -1,15 +1,21 @@
-import { IcoeName } from 'assets/icons';
 import styled from 'styled-components';
 
-// dummy
-export default function NationInfoCard() {
+interface NationInfoCardProps {
+  nation: {
+    icon: JSX.Element;
+    key: string;
+    data: string | (string | undefined)[] | undefined;
+  };
+}
+
+export default function NationInfoCard({ nation }: NationInfoCardProps) {
   return (
     <NationInfoCardBox>
       <InfoSubHeader>
-        <IcoeName color="gray" />
-        <SubHeader>Native Name</SubHeader>
+        {nation.icon}
+        <SubHeader>{nation.key}</SubHeader>
       </InfoSubHeader>
-      <InfoHeader>Česká republika</InfoHeader>
+      <InfoHeader>{nation.data}</InfoHeader>
     </NationInfoCardBox>
   );
 }
