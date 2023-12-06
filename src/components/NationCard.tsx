@@ -4,12 +4,13 @@ import { formatter } from './../utils/utils'; // 절대경로 에러 발생. 고
 import styled from 'styled-components';
 import { color, size, timer } from 'styles/constants';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
 interface NationCardProps {
   nation: NationT;
 }
 
-export default function NationCard({ nation }: NationCardProps) {
+function NationCard({ nation }: NationCardProps) {
   return (
     <Card to={`/nation/${nation.name.official}`}>
       <FlagBox>
@@ -172,3 +173,5 @@ const Detail = styled.div`
     max-width: 150px;
   }
 `;
+
+export const NationCardMemo = memo(NationCard);

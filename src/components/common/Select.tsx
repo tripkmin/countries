@@ -1,14 +1,18 @@
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 interface SelectProps {
   options: string[];
+  optionHandler: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export default function Select({ options }: SelectProps) {
+export default function Select({ options, optionHandler }: SelectProps) {
   return (
-    <SelectBox>
+    <SelectBox onChange={optionHandler}>
       {options.map(option => (
-        <option value={option}>{option}</option>
+        <option key={option} value={option}>
+          {option}
+        </option>
       ))}
     </SelectBox>
   );
