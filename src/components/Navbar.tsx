@@ -26,7 +26,7 @@ const Header = styled.header`
   border-bottom: 1px solid ${props => props.theme.border.primary};
   background-color: ${props => props.theme.background.primary};
   color: ${props => props.theme.font.primary};
-  transition: all ${timer.default};
+  transition: background-color ${timer.default}, color ${timer.default};
 
   @media screen and (max-width: ${size.desktop}) {
     width: 100%;

@@ -19,7 +19,7 @@ const MainBox = styled.main`
   gap: 4rem;
   color: ${props => props.theme.font.primary};
   background-color: ${props => props.theme.background.primary};
-  transition: all ${timer.default};
+  transition: background-color ${timer.default}, color ${timer.default};
 
   @media screen and (max-width: ${size.desktop}) {
     width: 100%;

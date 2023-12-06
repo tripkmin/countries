@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { size, timer } from 'styles/constants';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
+import { motion } from 'framer-motion';
+import { fadeIn } from 'styles/animation';
 
 interface NationCardProps {
   nation: NationT;
@@ -12,29 +14,41 @@ interface NationCardProps {
 
 function NationCard({ nation }: NationCardProps) {
   return (
-    <Card to={`/nation/${nation.name.official}`}>
-      <FlagBox>
-        <Flag src={nation.flags.svg} alt={nation.flags.alt}></Flag>
-      </FlagBox>
-      <NationDescription>
-        <NationMain>
-          <Region>{nation.region}</Region>
-          <NationName>{nation.name.official}</NationName>
-        </NationMain>
-        <NationFooter>
-          <NationDetail>
-            <IconPeople />
-            <Detail>{formatter(nation.population, 0)}</Detail>
-          </NationDetail>
-          <NationDetail>
-            <IconCapital />
-            <Detail>{nation.capital?.join('') || '-'}</Detail>
-          </NationDetail>
-        </NationFooter>
-      </NationDescription>
-    </Card>
+    <CardWrapper
+      variants={fadeIn}
+      initial="initial"
+      whileInView="animate"
+      exit="exit"
+      viewport={{ amount: 0.6, once: true }}
+    >
+      <Card to={`/nation/${nation.name.official}`}>
+        <FlagBox>
+          <Flag src={nation.flags.svg} alt={nation.flags.alt}></Flag>
+        </FlagBox>
+        <NationDescription>
+          <NationMain>
+            <Region>{nation.region}</Region>
+            <NationName>{nation.name.official}</NationName>
+          </NationMain>
+          <NationFooter>
+            <NationDetail>
+              <IconPeople />
+              <Detail>{formatter(nation.population, 0)}</Detail>
+            </NationDetail>
+            <NationDetail>
+              <IconCapital />
+              <Detail>{nation.capital?.join('') || '-'}</Detail>
+            </NationDetail>
+          </NationFooter>
+        </NationDescription>
+      </Card>
+    </CardWrapper>
   );
 }
+
+const CardWrapper = styled(motion.div)`
+  display: flex;
+`;
 
 const Card = styled(Link)`
   width: 240px;
@@ -50,7 +64,7 @@ const Card = styled(Link)`
   box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
-  transition: all ${timer.default};
+  transition: background-color ${timer.default}, color ${timer.default};
 
   &:hover {
     box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);

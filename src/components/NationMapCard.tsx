@@ -47,7 +47,7 @@ const MapSubHeader = styled.div`
   gap: 0.5rem;
   color: ${props => props.theme.font.secondary};
   fill: ${props => props.theme.font.secondary};
-  transition: all ${timer.default};
+  transition: color ${timer.default}, fill ${timer.default};
 `;
 
 const SubHeader = styled.h2`

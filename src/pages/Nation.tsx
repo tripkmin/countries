@@ -23,10 +23,11 @@ import { GoogleMapsWrapper } from 'layouts/GoogleMaps';
 import { GoogleMaps } from 'components/Maps';
 import { size, timer } from 'styles/constants';
 import NationMapCard from 'components/NationMapCard';
-import Footer from 'components/Footer';
 import { useEffect, useState } from 'react';
 import useInterval from 'hooks/useInterval';
 import { Button } from 'components/common/Button';
+import { motion } from 'framer-motion';
+import { fadeInUp } from 'styles/animation';
 
 export default function Nation() {
   const [transCount, setTransCount] = useState(0);
@@ -78,28 +79,28 @@ export default function Nation() {
 
   return (
     <Main>
-      <HeadSection>
+      <HeadSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
         <Flag src={data?.flags.svg}></Flag>
         <Header>
           <GlobalNamesBox>
             <GlobalNames $transY={transCount}>
               {getTranslations(data?.translations)?.map(globalName => (
-                <p>{globalName}</p>
+                <p key={globalName}>{globalName}</p>
               ))}
             </GlobalNames>
           </GlobalNamesBox>
           <NationName>{data?.name.official}</NationName>
         </Header>
       </HeadSection>
-      <InfoSection>
+      <InfoSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
         <SubHead>INFO</SubHead>
         <NationInfoList>
           {InfoData.map(item => (
-            <NationInfoCard nation={item} />
+            <NationInfoCard key={item.key} nation={item} />
           ))}
         </NationInfoList>
       </InfoSection>
-      <MapSection>
+      <MapSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
         <SubHead>MAPS</SubHead>
         <GoogleMapsWrapper>
           <GoogleMaps latlng={data?.latlng}></GoogleMaps>
@@ -118,7 +119,7 @@ export default function Nation() {
   );
 }
 
-const HeadSection = styled.section`
+const HeadSection = styled(motion.section)`
   padding: 50px 0;
   display: flex;
   flex-direction: column;
@@ -168,7 +169,7 @@ const SubHead = styled.h2`
   letter-spacing: 0.5rem;
 `;
 
-const InfoSection = styled.section`
+const InfoSection = styled(motion.section)`
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -187,7 +188,7 @@ const NationInfoList = styled.div`
   }
 `;
 
-const MapSection = styled.section`
+const MapSection = styled(motion.section)`
   display: flex;
   flex-direction: column;
   gap: 3rem;

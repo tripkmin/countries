@@ -10,7 +10,8 @@ export const Button = styled.button`
   fill: ${props => props.theme.font.secondary};
   color: ${props => props.theme.font.primary};
   background-color: ${props => props.theme.background.secondary};
-  transition: all ${timer.default};
+  transition: background-color ${timer.default}, color ${timer.default},
+    fill ${timer.default};
   box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);

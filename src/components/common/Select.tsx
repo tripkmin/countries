@@ -25,7 +25,7 @@ const SelectBox = styled.select`
   padding: 1rem;
   background-color: ${props => props.theme.background.secondary};
   color: ${props => props.theme.font.primary};
-  transition: all ${timer.default};
+  transition: background-color ${timer.default}, color ${timer.default};
   border-radius: 10px;
   border: none;
 `;

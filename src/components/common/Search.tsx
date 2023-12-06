@@ -27,7 +27,8 @@ const SearchBox = styled.form`
   background-color: ${props => props.theme.background.secondary};
   fill: ${props => props.theme.font.secondary};
   color: ${props => props.theme.font.primary};
-  transition: all ${timer.default};
+  transition: background-color ${timer.default}, color ${timer.default},
+    fill ${timer.default};
   border-radius: 10px;
   display: flex;
   align-items: center;
