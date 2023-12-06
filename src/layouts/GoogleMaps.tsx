@@ -1,6 +1,5 @@
 import { Wrapper } from '@googlemaps/react-wrapper';
 import styled from 'styled-components';
-import { color } from 'styles/constants';
 import { LayoutProps } from 'types/type';
 
 export const GoogleMapsWrapper = ({ children }: LayoutProps) => {
@@ -24,7 +23,7 @@ const Warning = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 3rem;
-  background-color: ${color.veryLightGray};
+  background-color: ${props => props.theme.background.secondary};
   line-height: 180%;
   text-align: center;
   border-radius: 10px;

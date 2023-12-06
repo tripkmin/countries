@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { size } from 'styles/constants';
+import { size, timer } from 'styles/constants';
 
 export default function Footer() {
   return (
@@ -15,7 +15,10 @@ const FooterBox = styled.footer`
   margin: 0 auto;
   padding: 2rem 0;
   width: 1100px;
-  border-top: 1px solid #eee;
+  color: ${props => props.theme.font.primary};
+  background-color: ${props => props.theme.background.primary};
+  border-top: 1px solid ${props => props.theme.border.primary};
+  transition: all ${timer.default};
 
   @media screen and (max-width: ${size.desktop}) {
     width: 100%;

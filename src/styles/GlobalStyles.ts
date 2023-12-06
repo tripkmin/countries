@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { timer } from './constants';
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -78,7 +79,12 @@ const GlobalStyles = createGlobalStyle`
     textarea&:focus{
       outline: none;
     }
-
+    
+    #root {
+      min-height: 100vh;
+      background-color: ${props => props.theme.background.primary};
+      transition: background-color ${timer.default};
+    }
 `;
 
 export default GlobalStyles;

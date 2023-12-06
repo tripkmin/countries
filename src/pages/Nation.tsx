@@ -77,48 +77,44 @@ export default function Nation() {
   }, [name]);
 
   return (
-    <>
-      <Navbar />
-      <Main>
-        <HeadSection>
-          <Flag src={data?.flags.svg}></Flag>
-          <Header>
-            <GlobalNamesBox>
-              <GlobalNames $transY={transCount}>
-                {getTranslations(data?.translations)?.map(globalName => (
-                  <p>{globalName}</p>
-                ))}
-              </GlobalNames>
-            </GlobalNamesBox>
-            <NationName>{data?.name.official}</NationName>
-          </Header>
-        </HeadSection>
-        <InfoSection>
-          <SubHead>INFO</SubHead>
-          <NationInfoList>
-            {InfoData.map(item => (
-              <NationInfoCard nation={item} />
-            ))}
-          </NationInfoList>
-        </InfoSection>
-        <MapSection>
-          <SubHead>MAPS</SubHead>
-          <GoogleMapsWrapper>
-            <GoogleMaps latlng={data?.latlng}></GoogleMaps>
-          </GoogleMapsWrapper>
-          <NationMapCard borderData={mapData}></NationMapCard>
-        </MapSection>
-        <ButtonSection>
-          <Link to="/">
-            <Button>
-              <IconArrowBack />
-              Back
-            </Button>
-          </Link>
-        </ButtonSection>
-      </Main>
-      <Footer />
-    </>
+    <Main>
+      <HeadSection>
+        <Flag src={data?.flags.svg}></Flag>
+        <Header>
+          <GlobalNamesBox>
+            <GlobalNames $transY={transCount}>
+              {getTranslations(data?.translations)?.map(globalName => (
+                <p>{globalName}</p>
+              ))}
+            </GlobalNames>
+          </GlobalNamesBox>
+          <NationName>{data?.name.official}</NationName>
+        </Header>
+      </HeadSection>
+      <InfoSection>
+        <SubHead>INFO</SubHead>
+        <NationInfoList>
+          {InfoData.map(item => (
+            <NationInfoCard nation={item} />
+          ))}
+        </NationInfoList>
+      </InfoSection>
+      <MapSection>
+        <SubHead>MAPS</SubHead>
+        <GoogleMapsWrapper>
+          <GoogleMaps latlng={data?.latlng}></GoogleMaps>
+        </GoogleMapsWrapper>
+        <NationMapCard borderData={mapData}></NationMapCard>
+      </MapSection>
+      <ButtonSection>
+        <Link to="/">
+          <Button>
+            <IconArrowBack />
+            Back
+          </Button>
+        </Link>
+      </ButtonSection>
+    </Main>
   );
 }
 
@@ -155,6 +151,7 @@ const GlobalNames = styled.div<{ $transY: number }>`
 
   p {
     height: 28px;
+    color: ${props => props.theme.font.secondary};
   }
 `;
 

@@ -54,22 +54,18 @@ export default function Home() {
   };
 
   return (
-    <>
-      <Navbar />
-      <Main>
-        <Option>
-          <Search value={searchValue} inputHandler={handleInputChange} />
-          <Select options={REGIONS} optionHandler={handleOptionChange} />
-        </Option>
-        <NationCardList>
-          {debouncedValue === ''
-            ? nation.map(nation => <NationCardMemo key={nation.cca3} nation={nation} />)
-            : filteredNation.map(nation => (
-                <NationCardMemo key={nation.cca3} nation={nation} />
-              ))}
-        </NationCardList>
-      </Main>
-      <Footer></Footer>
-    </>
+    <Main>
+      <Option>
+        <Search value={searchValue} inputHandler={handleInputChange} />
+        <Select options={REGIONS} optionHandler={handleOptionChange} />
+      </Option>
+      <NationCardList>
+        {debouncedValue === '' && optionValue === 'All'
+          ? nation.map(nation => <NationCardMemo key={nation.cca3} nation={nation} />)
+          : filteredNation.map(nation => (
+              <NationCardMemo key={nation.cca3} nation={nation} />
+            ))}
+      </NationCardList>
+    </Main>
   );
 }

@@ -121,3 +121,17 @@ export interface PostalCode {
 export interface LayoutProps {
   children?: ReactNode;
 }
+
+export type ThemeT = 'dark' | 'light';
+
+export type ThemeModeDetail = {
+  background: {
+    [key: string]: string;
+  };
+  font: {
+    [key: string]: string;
+  };
+  border: {
+    [key: string]: string;
+  };
+};

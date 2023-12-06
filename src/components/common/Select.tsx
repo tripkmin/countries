@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
+import { timer } from 'styles/constants';
 
 interface SelectProps {
   options: string[];
@@ -20,8 +21,11 @@ export default function Select({ options, optionHandler }: SelectProps) {
 
 const SelectBox = styled.select`
   width: 100px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 1rem;
-  border: 1px solid #aaa;
+  background-color: ${props => props.theme.background.secondary};
+  color: ${props => props.theme.font.primary};
+  transition: all ${timer.default};
   border-radius: 10px;
+  border: none;
 `;

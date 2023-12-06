@@ -2,7 +2,7 @@ import { IconCapital, IconPeople } from 'assets/icons';
 import { NationT } from 'src/types/type';
 import { formatter } from './../utils/utils'; // 절대경로 에러 발생. 고쳐야 함!
 import styled from 'styled-components';
-import { color, size, timer } from 'styles/constants';
+import { size, timer } from 'styles/constants';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
 
@@ -45,10 +45,12 @@ const Card = styled(Link)`
   gap: 1.5rem;
   text-align: center;
   border-radius: 10px;
+  color: ${props => props.theme.font.primary};
+  background-color: ${props => props.theme.background.secondary};
   box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
-  transition: box-shadow ${timer.default};
+  transition: all ${timer.default};
 
   &:hover {
     box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
@@ -71,7 +73,8 @@ const FlagBox = styled.div`
   align-items: center;
   width: 210px;
   height: 140px;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.background.tertiary};
+  transition: background-color ${timer.default};
   border-radius: 10px;
   overflow: hidden;
 
@@ -95,7 +98,8 @@ const NationDescription = styled.div`
   & > :first-child::after {
     content: '';
     width: 100%;
-    border: 1px solid #eee;
+    border: 1px solid ${props => props.theme.border.primary};
+    transition: border ${timer.default};
     display: block;
     margin-top: 0.5rem;
   }
@@ -124,7 +128,7 @@ const NationMain = styled.div`
 const Region = styled.h2`
   font-weight: 300;
   font-size: 1em;
-  color: ${color.lightGray};
+  color: ${props => props.theme.font.secondary};
   letter-spacing: 0.25rem;
 
   @media screen and (max-width: ${size.mobile}) {
@@ -157,7 +161,8 @@ const NationDetail = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-
+  fill: ${props => props.theme.font.secondary};
+  transition: fill ${timer.default};
   @media screen and (max-width: ${size.mobile}) {
     flex-direction: row;
   }

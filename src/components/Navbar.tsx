@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { size } from 'styles/constants';
+import { size, timer } from 'styles/constants';
 
-export default function Navbar() {
+interface NavbarProps {
+  themeHandler: () => void;
+}
+
+export default function Navbar({ themeHandler }: NavbarProps) {
   return (
     <Header>
       <Logo to="/">Where in the world?</Logo>
-      <button>button</button>
+      <button onClick={themeHandler}>button</button>
     </Header>
   );
 }
@@ -19,7 +23,10 @@ const Header = styled.header`
   align-items: center;
   width: 1100px;
   height: 50px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid ${props => props.theme.border.primary};
+  background-color: ${props => props.theme.background.primary};
+  color: ${props => props.theme.font.primary};
+  transition: all ${timer.default};
 
   @media screen and (max-width: ${size.desktop}) {
     width: 100%;
