@@ -6,7 +6,6 @@ import { size, timer } from 'styles/constants';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
 import { motion } from 'framer-motion';
-import { fadeIn } from 'styles/animation';
 
 interface NationCardProps {
   nation: NationT;
@@ -14,43 +13,31 @@ interface NationCardProps {
 
 function NationCard({ nation }: NationCardProps) {
   return (
-    <CardWrapper
-      variants={fadeIn}
-      initial="initial"
-      whileInView="animate"
-      exit="exit"
-      viewport={{ amount: 0.6, once: true }}
-    >
-      <Card to={`/nation/${nation.name.official}`}>
-        <FlagBox>
-          <Flag src={nation.flags.svg} alt={nation.flags.alt}></Flag>
-        </FlagBox>
-        <NationDescription>
-          <NationMain>
-            <Region>{nation.region}</Region>
-            <NationName>{nation.name.official}</NationName>
-          </NationMain>
-          <NationFooter>
-            <NationDetail>
-              <IconPeople />
-              <Detail>{formatter(nation.population, 0)}</Detail>
-            </NationDetail>
-            <NationDetail>
-              <IconCapital />
-              <Detail>{nation.capital?.join('') || '-'}</Detail>
-            </NationDetail>
-          </NationFooter>
-        </NationDescription>
-      </Card>
-    </CardWrapper>
+    <Card to={`/nation/${nation.name.official}`}>
+      <FlagBox>
+        <Flag src={nation.flags.svg} alt={nation.flags.alt}></Flag>
+      </FlagBox>
+      <NationDescription>
+        <NationMain>
+          <Region>{nation.region}</Region>
+          <NationName>{nation.name.official}</NationName>
+        </NationMain>
+        <NationFooter>
+          <NationDetail>
+            <IconPeople />
+            <Detail>{formatter(nation.population, 0)}</Detail>
+          </NationDetail>
+          <NationDetail>
+            <IconCapital />
+            <Detail>{nation.capital?.join('') || '-'}</Detail>
+          </NationDetail>
+        </NationFooter>
+      </NationDescription>
+    </Card>
   );
 }
 
-const CardWrapper = styled(motion.div)`
-  display: flex;
-`;
-
-const Card = styled(Link)`
+export const Card = styled(Link)`
   width: 240px;
   padding: 20px 15px 30px 15px;
   display: flex;
@@ -82,7 +69,7 @@ const Card = styled(Link)`
   }
 `;
 
-const FlagBox = styled.div`
+export const FlagBox = styled.div`
   display: flex;
   align-items: center;
   width: 210px;
@@ -102,7 +89,7 @@ const Flag = styled.img`
   width: 100%;
 `;
 
-const NationDescription = styled.div`
+export const NationDescription = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -128,7 +115,7 @@ const NationDescription = styled.div`
   }
 `;
 
-const NationMain = styled.div`
+export const NationMain = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -160,7 +147,7 @@ const NationName = styled.h1`
   }
 `;
 
-const NationFooter = styled.div`
+export const NationFooter = styled.div`
   display: flex;
   justify-content: space-around;
 
@@ -170,13 +157,14 @@ const NationFooter = styled.div`
   }
 `;
 
-const NationDetail = styled.div`
+export const NationDetail = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
   fill: ${props => props.theme.font.secondary};
   transition: fill ${timer.default};
+
   @media screen and (max-width: ${size.mobile}) {
     flex-direction: row;
   }

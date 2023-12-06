@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { timer } from 'styles/constants';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 interface NationMapCardProps {
   borderData: {
@@ -8,9 +10,10 @@ interface NationMapCardProps {
     key: string;
     data: (string | undefined)[] | undefined;
   };
+  isLoading: boolean;
 }
 
-export default function NationMapCard({ borderData }: NationMapCardProps) {
+export default function NationMapCard({ borderData, isLoading }: NationMapCardProps) {
   return (
     <NationMapCardBox>
       <MapSubHeader>
@@ -18,7 +21,13 @@ export default function NationMapCard({ borderData }: NationMapCardProps) {
         <SubHeader>{borderData.key}</SubHeader>
       </MapSubHeader>
       <MapHeader>
-        {borderData.data ? (
+        {isLoading ? (
+          <>
+            <Skeleton width={140} height="1.6rem" />
+            <Skeleton width={200} height="1.6rem" />
+            <Skeleton width={100} height="1.6rem" />
+          </>
+        ) : borderData.data ? (
           borderData.data?.map(border => <Badge to={`/nation/${border}`}>{border}</Badge>)
         ) : (
           <p>There are no border countries</p>
@@ -66,6 +75,9 @@ const Badge = styled(Link)`
   font-size: 0.9rem;
   padding: 1rem;
   border-radius: 10px;
+  color: ${props => props.theme.font.primary};
+  background-color: ${props => props.theme.background.tertiary};
+  transition: background-color ${timer.default}, color ${timer.default};
   box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.05);

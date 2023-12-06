@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { timer } from 'styles/constants';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 interface NationInfoCardProps {
   nation: {
@@ -7,16 +9,21 @@ interface NationInfoCardProps {
     key: string;
     data: string | (string | undefined)[] | undefined;
   };
+  isLoading: boolean;
 }
 
-export default function NationInfoCard({ nation }: NationInfoCardProps) {
+export default function NationInfoCard({ nation, isLoading }: NationInfoCardProps) {
   return (
     <NationInfoCardBox>
       <InfoSubHeader>
         {nation.icon}
         <SubHeader>{nation.key}</SubHeader>
       </InfoSubHeader>
-      <InfoHeader>{nation.data}</InfoHeader>
+      {isLoading ? (
+        <Skeleton width="60%" height="1.6rem"></Skeleton>
+      ) : (
+        <InfoHeader>{nation.data}</InfoHeader>
+      )}
     </NationInfoCardBox>
   );
 }

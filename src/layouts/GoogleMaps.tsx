@@ -1,5 +1,6 @@
 import { Wrapper } from '@googlemaps/react-wrapper';
 import styled from 'styled-components';
+import { timer } from 'styles/constants';
 import { LayoutProps } from 'types/type';
 
 export const GoogleMapsWrapper = ({ children }: LayoutProps) => {
@@ -27,6 +28,7 @@ const Warning = styled.div`
   line-height: 180%;
   text-align: center;
   border-radius: 10px;
+  transition: background-color ${timer.default};
 
   strong {
     font-weight: 700;

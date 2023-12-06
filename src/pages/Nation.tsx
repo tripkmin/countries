@@ -1,5 +1,4 @@
 import Main from 'layouts/Main';
-import Navbar from 'components/Navbar';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { NationT } from 'types/type';
@@ -28,12 +27,14 @@ import useInterval from 'hooks/useInterval';
 import { Button } from 'components/common/Button';
 import { motion } from 'framer-motion';
 import { fadeInUp } from 'styles/animation';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Nation() {
   const [transCount, setTransCount] = useState(0);
   const { name } = useParams();
 
-  const { data } = useQuery<NationT>({
+  const { data, isLoading } = useQuery<NationT>({
     queryKey: ['nation', name],
     queryFn: async () => {
       try {
@@ -80,32 +81,50 @@ export default function Nation() {
   return (
     <Main>
       <HeadSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
-        <Flag src={data?.flags.svg}></Flag>
+        {isLoading ? (
+          <Skeleton width={350} height={210}></Skeleton>
+        ) : (
+          <Flag src={data?.flags.svg}></Flag>
+        )}
         <Header>
-          <GlobalNamesBox>
-            <GlobalNames $transY={transCount}>
-              {getTranslations(data?.translations)?.map(globalName => (
-                <p key={globalName}>{globalName}</p>
-              ))}
-            </GlobalNames>
-          </GlobalNamesBox>
-          <NationName>{data?.name.official}</NationName>
+          {isLoading ? (
+            <Skeleton width={200}></Skeleton>
+          ) : (
+            <GlobalNamesBox>
+              <GlobalNames $transY={transCount}>
+                {getTranslations(data?.translations)?.map(globalName => (
+                  <p key={globalName}>{globalName}</p>
+                ))}
+              </GlobalNames>
+            </GlobalNamesBox>
+          )}
+
+          {isLoading ? (
+            <Skeleton width={300} height="2.5rem"></Skeleton>
+          ) : (
+            <NationName>{data?.name.official}</NationName>
+          )}
         </Header>
       </HeadSection>
       <InfoSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
         <SubHead>INFO</SubHead>
         <NationInfoList>
           {InfoData.map(item => (
-            <NationInfoCard key={item.key} nation={item} />
+            <NationInfoCard isLoading={isLoading} key={item.key} nation={item} />
           ))}
         </NationInfoList>
       </InfoSection>
       <MapSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
         <SubHead>MAPS</SubHead>
-        <GoogleMapsWrapper>
-          <GoogleMaps latlng={data?.latlng}></GoogleMaps>
-        </GoogleMapsWrapper>
-        <NationMapCard borderData={mapData}></NationMapCard>
+        {isLoading ? (
+          <Skeleton width="100%" height={700}></Skeleton>
+        ) : (
+          <GoogleMapsWrapper>
+            <GoogleMaps latlng={data?.latlng}></GoogleMaps>
+          </GoogleMapsWrapper>
+        )}
+
+        <NationMapCard isLoading={isLoading} borderData={mapData}></NationMapCard>
       </MapSection>
       <ButtonSection>
         <Link to="/">
@@ -130,7 +149,11 @@ const HeadSection = styled(motion.section)`
   border-radius: 20px;
 `;
 
-const Header = styled.div``;
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const Flag = styled.img`
   width: 350px;
   border-radius: 10px;
