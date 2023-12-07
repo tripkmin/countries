@@ -29,6 +29,9 @@ const Warning = styled.div`
   text-align: center;
   border-radius: 10px;
   transition: background-color ${timer.default};
+  box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
 
   strong {
     font-weight: 700;

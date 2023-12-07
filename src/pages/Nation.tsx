@@ -146,8 +146,8 @@ const HeadSection = styled(motion.section)`
   align-items: center;
   gap: 1.5rem;
   position: relative;
-
-  border-radius: 20px;
+  border-bottom: 1px solid ${props => props.theme.border.secondary};
+  transition: border-bottom ${timer.default};
 `;
 
 const Header = styled.div`

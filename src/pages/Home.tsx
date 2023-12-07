@@ -16,7 +16,7 @@ import LoadingSkeleton from 'components/LoadingSkeleton';
 import { FlatButton } from 'components/common/Button';
 
 export default function Home() {
-  const { data: nation = [], isLoading } = useQuery<NationT[]>({
+  const { data = [], isLoading } = useQuery<NationT[]>({
     queryKey: ['wholeNation'],
     queryFn: async () => {
       try {
@@ -39,8 +39,9 @@ export default function Home() {
 
   const SLICE_SIZE = 24;
   const [sliceCount, setSliceCount] = useState(1);
-  const sliceData = nation.slice(0, SLICE_SIZE * sliceCount);
+  const sliceData = data.slice(0, SLICE_SIZE * sliceCount);
 
+  // option, search 관련 시작
   useEffect(() => {
     const lowerCaseValue = debouncedValue.toLowerCase();
 
@@ -51,12 +52,12 @@ export default function Home() {
       items.filter(item => item.region === optionValue);
 
     if (debouncedValue && optionValue === 'All') {
-      setFilteredNation(filterByValue(nation));
+      setFilteredNation(filterByValue(data));
     } else if (debouncedValue && optionValue !== 'All') {
-      const regionFiltered = filterByRegion(nation);
+      const regionFiltered = filterByRegion(data);
       setFilteredNation(filterByValue(regionFiltered));
     } else if (!debouncedValue && optionValue !== 'All') {
-      setFilteredNation(filterByRegion(nation));
+      setFilteredNation(filterByRegion(data));
     } else {
       setFilteredNation([]);
     }
@@ -74,7 +75,9 @@ export default function Home() {
     setSearchValue('');
     setOptionValue('All');
   };
+  // option, search 관련 끝
 
+  // 스크롤 이벤트 관련 시작
   const handleScroll = () => {
     // window.scrollY가 지원되지 않는 브라우저에서는 scrollTop을 이용해 scrollPosition 계산
     const scrollPosition = window.scrollY || document.documentElement.scrollTop;
@@ -94,7 +97,9 @@ export default function Home() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  // 스크롤 이벤트 관련 끝
 
+  // 조건부 렌더링 로직 시작
   const renderNationCards = () => {
     if (debouncedValue === '' && optionValue === 'All') {
       return sliceData.map(nation => (
@@ -117,6 +122,7 @@ export default function Home() {
       </NotFoundBox>
     );
   };
+  // 조건부 렌더링 로직 끝
 
   return (
     <Main>

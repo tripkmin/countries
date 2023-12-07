@@ -3,54 +3,44 @@ export const themeMode = {
     background: {
       primary: '#e5e5e0',
       secondary: '#ffffff',
-      button: '#e6e1e1',
-      buttonHover: '#fff9f9',
+      flag: '#f3f3ee',
+      button: '#F0EFE9',
+      buttonHover: '#F7F6F0',
     },
     font: {
-      primary: '#5e5d62',
-      secondary: '#8c8c96',
-      disabled: '#d0d0d3',
-      hover: '#4c4b63',
-      active: '#5d8ef3',
+      primary: '#3f3f42',
+      secondary: '#76767e',
     },
     border: {
-      primary: '#e1e1d4',
-      secondary: '#f5f4f6',
+      primary: '#b2b2ae',
+      secondary: '#d1d1cc',
     },
     skeleton: {
-      baseColor: '#5294e0',
-      highlightColor: '#96c7ff',
+      baseColor: '#dfdfda',
+      highlightColor: '#f6f6f0',
     },
   },
   dark: {
     background: {
-      primary: '#202C37',
-      secondary: '#2B3945',
-      tertiary: '#31414f',
-      button: '#e6e1e1',
-      buttonHover: '#fff9f9',
+      primary: '#313030',
+      secondary: '#414140',
+      flag: '#565654',
+      button: '#585857',
+      buttonHover: '#626261',
     },
     font: {
       primary: '#ffffff',
-      secondary: '#bbbbbb',
-      disabled: '#3f4158',
-      hover: '#dee1f3',
-      active: '#5d8ef3',
+      secondary: '#e0e0dc',
     },
     border: {
-      primary: '#666a95',
-      secondary: '#475D70',
+      primary: '#858582',
+      secondary: '#626261',
     },
     skeleton: {
-      baseColor: '#ebab34',
-      highlightColor: '#f2cb07',
+      baseColor: '#7e7e7c',
+      highlightColor: '#bcbcb9',
     },
   },
-};
-
-export const color = {
-  lightGray: '#aaaaaa',
-  veryLightGray: '#eeeeee',
 };
 
 export const timer = {

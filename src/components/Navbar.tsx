@@ -13,9 +13,9 @@ interface NavbarProps {
 export default function Navbar({ theme, themeHandler }: NavbarProps) {
   return (
     <Header>
-      <Logo to="/">Where in the world?</Logo>
+      <Logo href="/">Where in the world?</Logo>
       <ThemeButton onClick={themeHandler}>
-        {theme === 'light' ? <IconLight color="#ffc72c" /> : <IconDark color="#49abcf" />}
+        {theme === 'light' ? <IconLight color="#ffa41b" /> : <IconDark color="#83d8f7" />}
       </ThemeButton>
     </Header>
   );
@@ -38,7 +38,7 @@ const Header = styled.header`
   }
 `;
 
-const Logo = styled(Link)`
+const Logo = styled.a`
   font-size: 1.5rem;
   font-weight: 700;
 `;

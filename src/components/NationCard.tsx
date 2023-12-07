@@ -74,7 +74,7 @@ export const FlagBox = styled.div`
   align-items: center;
   width: 210px;
   height: 140px;
-  background-color: ${props => props.theme.background.primary};
+  background-color: ${props => props.theme.background.flag};
   transition: background-color ${timer.default};
   border-radius: 10px;
   overflow: hidden;
@@ -99,7 +99,7 @@ export const NationDescription = styled.div`
   & > :first-child::after {
     content: '';
     width: 100%;
-    border: 1px solid ${props => props.theme.border.primary};
+    border-bottom: 1px solid ${props => props.theme.border.secondary};
     transition: border ${timer.default};
     display: block;
     margin-top: 0.5rem;
@@ -130,6 +130,7 @@ const Region = styled.h2`
   font-weight: 400;
   font-size: 1em;
   color: ${props => props.theme.font.secondary};
+  transition: color ${timer.default};
   letter-spacing: 0.25rem;
 
   @media screen and (max-width: ${size.mobile}) {
@@ -177,7 +178,7 @@ const Detail = styled.div`
   text-overflow: ellipsis;
 
   @media screen and (max-width: ${size.mobile}) {
-    max-width: 150px;
+    max-width: 100px;
   }
 `;
 

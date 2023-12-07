@@ -23,6 +23,19 @@ const GlobalStyles = createGlobalStyle`
     }
     body{
       min-height: 100vh;
+      scrollbar-color: #e5e5e0 #7e7e7c;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #e5e5e0;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #7e7e7c;
+      }
     }
 
     ol, ul{

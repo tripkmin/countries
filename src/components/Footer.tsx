@@ -40,7 +40,8 @@ const FooterBox = styled.footer`
   color: ${props => props.theme.font.primary};
   background-color: ${props => props.theme.background.primary};
   border-top: 1px solid ${props => props.theme.border.primary};
-  transition: all ${timer.default};
+  transition: fill ${timer.default}, color ${timer.default},
+    background-color ${timer.default}, border-top ${timer.default};
 
   @media screen and (max-width: ${size.desktop}) {
     width: 100%;
