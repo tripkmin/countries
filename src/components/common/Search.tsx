@@ -13,8 +13,7 @@ export default function Search({ value, inputHandler: onChange }: SearchProps) {
     <SearchBox
       onSubmit={e => {
         e.preventDefault();
-      }}
-    >
+      }}>
       <IconSearch />
       <input type="text" value={value} onChange={onChange}></input>
     </SearchBox>
@@ -22,8 +21,7 @@ export default function Search({ value, inputHandler: onChange }: SearchProps) {
 }
 
 const SearchBox = styled.form`
-  width: 300px;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   background-color: ${props => props.theme.background.secondary};
   fill: ${props => props.theme.font.secondary};
   color: ${props => props.theme.font.primary};
@@ -35,6 +33,7 @@ const SearchBox = styled.form`
   gap: 1rem;
 
   input {
+    width: 100%;
     flex-grow: 1;
     background-color: inherit;
     color: inherit;

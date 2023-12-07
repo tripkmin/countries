@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { size, timer } from 'styles/constants';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
-import { motion } from 'framer-motion';
 
 interface NationCardProps {
   nation: NationT;
@@ -51,7 +50,8 @@ export const Card = styled(Link)`
   box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
-  transition: background-color ${timer.default}, color ${timer.default};
+  transition: background-color ${timer.default}, color ${timer.default},
+    box-shadow ${timer.default};
 
   &:hover {
     box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
@@ -74,7 +74,7 @@ export const FlagBox = styled.div`
   align-items: center;
   width: 210px;
   height: 140px;
-  background-color: ${props => props.theme.background.tertiary};
+  background-color: ${props => props.theme.background.primary};
   transition: background-color ${timer.default};
   border-radius: 10px;
   overflow: hidden;
@@ -127,7 +127,7 @@ export const NationMain = styled.div`
 `;
 
 const Region = styled.h2`
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1em;
   color: ${props => props.theme.font.secondary};
   letter-spacing: 0.25rem;

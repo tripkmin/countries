@@ -9,6 +9,8 @@ import { themeMode } from 'styles/constants';
 import useTheme from 'hooks/useTheme';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import NotFound from 'pages/NotFound';
 
 const queryClient = new QueryClient();
 
@@ -18,13 +20,18 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={themeMode[theme]}>
-        <GlobalStyles />
-        <Navbar themeHandler={themeHandler} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/nation/:name" element={<Nation />} />
-        </Routes>
-        <Footer />
+        <SkeletonTheme
+          baseColor={themeMode[theme].skeleton.baseColor}
+          highlightColor={themeMode[theme].skeleton.highlightColor}>
+          <GlobalStyles />
+          <Navbar theme={theme} themeHandler={themeHandler} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/nation/:name" element={<Nation />} />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </SkeletonTheme>
       </ThemeProvider>
     </QueryClientProvider>
   );

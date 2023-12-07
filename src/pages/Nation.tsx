@@ -9,6 +9,7 @@ import {
   IconCapital,
   IconCurrency,
   IconDomain,
+  IconInfo,
   IconLanguages,
   IconName,
   IconPeople,
@@ -92,8 +93,8 @@ export default function Nation() {
           ) : (
             <GlobalNamesBox>
               <GlobalNames $transY={transCount}>
-                {getTranslations(data?.translations)?.map(globalName => (
-                  <p key={globalName}>{globalName}</p>
+                {getTranslations(data?.translations)?.map((globalName, idx) => (
+                  <p key={idx}>{globalName}</p>
                 ))}
               </GlobalNames>
             </GlobalNamesBox>
@@ -157,6 +158,9 @@ const Header = styled.div`
 const Flag = styled.img`
   width: 350px;
   border-radius: 10px;
+  box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
 `;
 
 const CoatOfArms = styled.img`

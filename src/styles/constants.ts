@@ -1,12 +1,10 @@
 export const themeMode = {
   light: {
     background: {
-      primary: '#eeeeee',
+      primary: '#e5e5e0',
       secondary: '#ffffff',
-      tertiary: '#fafafa',
-      light: '#dddddd',
-      dragged: '#cccccc',
-      toast: '#efefef',
+      button: '#e6e1e1',
+      buttonHover: '#fff9f9',
     },
     font: {
       primary: '#5e5d62',
@@ -16,8 +14,12 @@ export const themeMode = {
       active: '#5d8ef3',
     },
     border: {
-      primary: '#a8a8a9',
+      primary: '#e1e1d4',
       secondary: '#f5f4f6',
+    },
+    skeleton: {
+      baseColor: '#5294e0',
+      highlightColor: '#96c7ff',
     },
   },
   dark: {
@@ -25,9 +27,8 @@ export const themeMode = {
       primary: '#202C37',
       secondary: '#2B3945',
       tertiary: '#31414f',
-      light: '#545888',
-      dragged: '#8389d4',
-      toast: '#25273c',
+      button: '#e6e1e1',
+      buttonHover: '#fff9f9',
     },
     font: {
       primary: '#ffffff',
@@ -39,6 +40,10 @@ export const themeMode = {
     border: {
       primary: '#666a95',
       secondary: '#475D70',
+    },
+    skeleton: {
+      baseColor: '#ebab34',
+      highlightColor: '#f2cb07',
     },
   },
 };

@@ -20,7 +20,6 @@ const CardList = styled.div`
 
   @media screen and (max-width: ${size.tablet}) {
     grid-template-columns: repeat(2, 260px);
-    padding: 0 1rem;
   }
 
   @media screen and (max-width: ${size.mobile}) {

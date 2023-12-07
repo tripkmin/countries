@@ -1,24 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  NationCardMemo,
-  NationDescription,
-  NationFooter,
-  NationMain,
-  NationDetail,
-  FlagBox,
-} from 'components/NationCard';
+import { NationCardMemo } from 'components/NationCard';
 import Main from 'layouts/Main';
 import NationCardList from 'layouts/NationCardList';
-import Option from 'layouts/Option';
+import Header from 'layouts/Option';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { NationT } from 'src/types/type';
 import Search from 'components/common/Search';
 import Select from 'components/common/Select';
 import useDebounce from 'hooks/useDebounce';
 import styled from 'styled-components';
-import { size, timer } from 'styles/constants';
-import Skeleton from 'react-loading-skeleton';
+import { size } from 'styles/constants';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { IconInfo, IconReset } from 'assets/icons';
+import LoadingSkeleton from 'components/LoadingSkeleton';
+import { FlatButton } from 'components/common/Button';
 
 export default function Home() {
   const { data: nation = [], isLoading } = useQuery<NationT[]>({
@@ -36,8 +31,8 @@ export default function Home() {
   });
 
   const [filteredNation, setFilteredNation] = useState<NationT[]>([]);
-  const [optionValue, setOptionValue] = useState('All');
   const [searchValue, setSearchValue] = useState('');
+  const [optionValue, setOptionValue] = useState('All');
   // useDebounce 훅을 이용해 300ms 뒤에 debouncedValue에 value가 할당됨.
   const debouncedValue = useDebounce(searchValue, 300);
   const REGIONS = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
@@ -71,111 +66,96 @@ export default function Home() {
     setOptionValue(e.target.value);
   };
 
-  const RenderNation = () => {
-    return (
-      <>
-        {debouncedValue === '' && optionValue === 'All'
-          ? nation.map(nation => <NationCardMemo key={nation.cca3} nation={nation} />)
-          : filteredNation.map(nation => (
-              <NationCardMemo key={nation.cca3} nation={nation} />
-            ))}
-      </>
-    );
+  const optionResetHandler = () => {
+    setSearchValue('');
+    setOptionValue('All');
   };
 
-  const LoadingSkeleton = () => {
+  const renderNationCards = () => {
+    if (debouncedValue === '' && optionValue === 'All') {
+      return nation.map(nation => <NationCardMemo key={nation.cca3} nation={nation} />);
+    } else {
+      return filteredNation.map(nation => (
+        <NationCardMemo key={nation.cca3} nation={nation} />
+      ));
+    }
+  };
+
+  const NationNotFound = () => {
     return (
-      <>
-        <CardSkeleton>
-          <FlagBoxSkeleton>
-            <Skeleton
-              containerClassName="container"
-              width="100%"
-              height="100%"></Skeleton>
-          </FlagBoxSkeleton>
-          <DescriptionSkeleton>
-            <NationMainSkeleton>
-              <Skeleton width={100} height="1.5rem"></Skeleton>
-              <Skeleton width={190} height="1.5rem"></Skeleton>
-            </NationMainSkeleton>
-            <NationFooterSkeleton>
-              <NationDetailSkeleton>
-                <Skeleton width={20} />
-                <Skeleton width={50}></Skeleton>
-              </NationDetailSkeleton>
-              <NationDetailSkeleton>
-                <Skeleton width={20} />
-                <Skeleton width={80}></Skeleton>
-              </NationDetailSkeleton>
-            </NationFooterSkeleton>
-          </DescriptionSkeleton>
-        </CardSkeleton>
-      </>
+      <NotFoundBox>
+        <IconInfo />
+        <p>
+          No Nations found for <strong>'{debouncedValue}'</strong>
+        </p>
+      </NotFoundBox>
     );
   };
 
   return (
     <Main>
-      <Option>
-        <Search value={searchValue} inputHandler={handleInputChange} />
-        <Select options={REGIONS} optionHandler={handleOptionChange} />
-      </Option>
-      <NationCardList>
-        {isLoading ? (
-          Array.from({ length: 12 }, _ => {
-            return <LoadingSkeleton />;
-          })
-        ) : (
-          <RenderNation />
-        )}
-      </NationCardList>
+      <Header>
+        <Head>
+          {debouncedValue !== ''
+            ? `Filtered Nation (${filteredNation.length})`
+            : 'All Nations'}
+        </Head>
+        <FilterBox>
+          <Search value={searchValue} inputHandler={handleInputChange} />
+          <Select
+            value={optionValue}
+            options={REGIONS}
+            optionHandler={handleOptionChange}
+          />
+          <ResetButton onClick={optionResetHandler}>
+            <IconReset />
+          </ResetButton>
+        </FilterBox>
+      </Header>
+      {debouncedValue !== '' && filteredNation.length === 0 ? (
+        <NationNotFound />
+      ) : (
+        <NationCardList>
+          {isLoading
+            ? Array.from({ length: 12 }, (_, idx) => <LoadingSkeleton key={idx} />)
+            : renderNationCards()}
+        </NationCardList>
+      )}
     </Main>
   );
 }
 
-const CardSkeleton = styled.div`
-  width: 240px;
-  padding: 20px 15px 30px 15px;
+const Head = styled.h1`
+  font-size: 2.5rem;
+  line-height: 120%;
+
+  @media screen and (max-width: ${size.desktop}) {
+    font-size: 2rem;
+  }
+
+  @media screen and (max-width: ${size.tablet}) {
+    font-size: 2.5rem;
+  }
+`;
+
+const FilterBox = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  gap: 1.5rem;
-  text-align: center;
-  border-radius: 10px;
-  color: ${props => props.theme.font.primary};
+  gap: 1rem;
+  flex-shrink: 1;
+`;
+
+const ResetButton = styled(FlatButton)`
+  flex-shrink: 0;
+  width: 40px;
+`;
+
+const NotFoundBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6rem 0;
+  border-radius: 1rem;
+  fill: ${props => props.theme.font.primary};
   background-color: ${props => props.theme.background.secondary};
-  box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
-  transition: background-color ${timer.default}, color ${timer.default};
-
-  &:hover {
-    box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  @media screen and (max-width: ${size.mobile}) {
-    width: 100%;
-    padding: 15px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    text-align: start;
-  }
-`;
-
-const FlagBoxSkeleton = styled(FlagBox)`
-  display: block;
-
-  .container {
-    line-height: 0;
-  }
-`;
-
-const DescriptionSkeleton = styled(NationDescription)``;
-const NationMainSkeleton = styled(NationMain)``;
-const NationFooterSkeleton = styled(NationFooter)``;
-const NationDetailSkeleton = styled(NationDetail)`
-  gap: 0;
 `;

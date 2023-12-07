@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import { timer } from './constants';
+import { size, timer } from './constants';
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -36,6 +36,9 @@ const GlobalStyles = createGlobalStyle`
     }
     p, span, textarea {
         line-height: 180%;
+    }
+    strong {
+      font-weight: 700;
     }
     h1 {
       font-size: 3rem;
@@ -84,6 +87,10 @@ const GlobalStyles = createGlobalStyle`
       min-height: 100vh;
       background-color: ${props => props.theme.background.primary};
       transition: background-color ${timer.default};
+
+      @media screen and (max-width: ${size.desktop}) {
+        padding: 0 10px;  
+      }
     }
 `;
 

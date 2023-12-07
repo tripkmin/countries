@@ -28,7 +28,11 @@ export default function NationMapCard({ borderData, isLoading }: NationMapCardPr
             <Skeleton width={100} height="1.6rem" />
           </>
         ) : borderData.data ? (
-          borderData.data?.map(border => <Badge to={`/nation/${border}`}>{border}</Badge>)
+          borderData.data?.map(border => (
+            <Badge key={border} to={`/nation/${border}`}>
+              {border}
+            </Badge>
+          ))
         ) : (
           <p>There are no border countries</p>
         )}
@@ -76,9 +80,18 @@ const Badge = styled(Link)`
   padding: 1rem;
   border-radius: 10px;
   color: ${props => props.theme.font.primary};
-  background-color: ${props => props.theme.background.tertiary};
-  transition: background-color ${timer.default}, color ${timer.default};
+  background-color: ${props => props.theme.background.button};
+  transition: background-color ${timer.default}, color ${timer.default},
+    transform ${timer.fast};
   box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    background-color: ${props => props.theme.background.buttonHover};
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 `;
