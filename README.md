@@ -1,46 +1,93 @@
-# Getting Started with Create React App
+## English
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 🔗 Links
 
-## Available Scripts
+- Github URL: [Click here](https://github.com/tripkmin/countries)
+- Live Site URL: [Click here](https://countries-tripkmin.vercel.app/)
 
-In the project directory, you can run:
+### 🛠️ Technologies Used
 
-### `npm start`
+- `React JS`
+- `React Query`
+- `TypeScript`
+- `Styled-Components`
+- `Framer Motion`
+- `HTML5`, `CSS`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 🗒️ Core Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Browse all countries on the home screen
+- Search for countries using an input field
+- Filter countries by region
+- Click on a country to view detailed information on the Nation Detail Page
+- View and navigate to neighboring countries on the Nation Detail Page
+- Responsive design implementation
+- Visual feedback for all interactive elements on the page
+- Implemented Light Mode and Dark Mode
 
-### `npm test`
+### ⚡ Additional Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Custom design
+  - Icons are made into components for easy reusability
+  - In the mobile environment, cards are transformed to appear in a horizontally elongated form
+  - Applied Skeleton UI on Nation Card and Nation Detail Page
+  - Population on Nation Card is intuitively shortened using a custom function
+  - Applied fade in up effect when loading the Nation Detail Page
+  - Multiple country names of the corresponding country are scrolled over on the Nation Detail Page
+- Load entire country data based on scroll
+  - Since REST Countries API does not provide pagination, data is divided and displayed on the client side
+- Country lookup feature using Google Maps API
+- Input/option reset functionality through the Reset button
 
-### `npm run build`
+### ‼️ To-Do Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Main Layout loads first when the page is initially loaded, causing inconsistency
+- Tooltip display feature
+- Analyze the color code of country images and display the corresponding color as the background
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 한국어
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🔗 링크
 
-### `npm run eject`
+- Github URL: [여기를 클릭해주세요](https://github.com/tripkmin/countries)
+- Live Site URL: [여기를 클릭해주세요](https://countries-tripkmin.vercel.app/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 🛠️ 사용한 기술
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `React JS`
+- `React Query`
+- `TypeScript`
+- `Styled-Components`
+- `Framer Motion`
+- `HTML5`, `CSS`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 🗒️ 기본 기능
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 홈 화면에서 전체 국가 조회 가능
+- 입력 필드를 사용하여 국가 검색 가능
+- 지역별로 국가 필터링 가능
+- 국가를 클릭할시 Nation Detail Page에서 자세한 정보 조회 가능
+- Nation Detail Page에서 접경 국가 정보 조회 및 이동 가능
+- 반응형 디자인 구현
+- 페이지의 모든 인터랙티브 요소에 대한 시각적 피드백 제공
+- 라이트 모드, 다크 모드 구현
 
-## Learn More
+### ⚡ 추가 기능
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 커스텀 디자인
+  - 아이콘을 컴포넌트로 만들어 재사용성이 용이하게 만듬
+  - 모바일 환경에서는 카드가 가로로 긴 형태로 변형되어 보이도록 적용
+  - Nation Card와 Nation Detail Page에서 Skeleton UI 적용
+  - Nation Card의 인구 수를 커스텀 함수를 사용해 직관적으로 줄임
+  - Nation Detail Page 로드 시 fade in up 효과 적용
+  - Nation Detail Page에서 해당 국가의 여러 국가명이 스크롤 오버됨
+- 스크롤에 맞게 전체 국가 데이터 로드
+  - REST Countries API에서 페이지네이션을 제공하지 않아 데이터를 클라이언트 단에서 나눠서 보여줌
+- Google Maps API를 이용한 해당 국가 조회 기능
+- Reset 버튼을 통한 input/option 초기화 기능
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ‼️ 보완해야 할 기능
+
+- 페이지 처음 로드 시 Main Layout이 먼저 로드되어 통일성이 깨지는 현상 발생
+- 툴팁 표시 기능
+- 국가 이미지의 컬러 코드를 분석해 해당 국가에 맞는 색상을 배경으로 띄워주는 기능
