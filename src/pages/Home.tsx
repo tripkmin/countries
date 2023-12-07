@@ -37,6 +37,10 @@ export default function Home() {
   const debouncedValue = useDebounce(searchValue, 300);
   const REGIONS = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
+  const SLICE_SIZE = 24;
+  const [sliceCount, setSliceCount] = useState(1);
+  const sliceData = nation.slice(0, SLICE_SIZE * sliceCount);
+
   useEffect(() => {
     const lowerCaseValue = debouncedValue.toLowerCase();
 
@@ -71,9 +75,31 @@ export default function Home() {
     setOptionValue('All');
   };
 
+  const handleScroll = () => {
+    // window.scrollY가 지원되지 않는 브라우저에서는 scrollTop을 이용해 scrollPosition 계산
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+    if (
+      scrollPosition >=
+      document.documentElement.scrollHeight - window.innerHeight - 200
+    ) {
+      setSliceCount(prevCount => prevCount + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const renderNationCards = () => {
     if (debouncedValue === '' && optionValue === 'All') {
-      return nation.map(nation => <NationCardMemo key={nation.cca3} nation={nation} />);
+      return sliceData.map(nation => (
+        <NationCardMemo key={nation.cca3} nation={nation} />
+      ));
     } else {
       return filteredNation.map(nation => (
         <NationCardMemo key={nation.cca3} nation={nation} />
