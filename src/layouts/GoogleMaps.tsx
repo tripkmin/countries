@@ -4,8 +4,7 @@ import { timer } from 'styles/constants';
 import { LayoutProps } from 'types/type';
 
 export const GoogleMapsWrapper = ({ children }: LayoutProps) => {
-  const apiKey = process.env.temp;
-  // const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+  const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   if (!apiKey) {
     return (
