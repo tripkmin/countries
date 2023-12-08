@@ -14,9 +14,14 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { IconInfo, IconReset } from 'assets/icons';
 import LoadingSkeleton from 'components/LoadingSkeleton';
 import { FlatButton } from 'components/common/Button';
+import Error from 'components/Error';
 
 export default function Home() {
-  const { data = [], isLoading } = useQuery<NationT[]>({
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useQuery<NationT[]>({
     queryKey: ['wholeNation'],
     queryFn: async () => {
       try {
@@ -25,7 +30,6 @@ export default function Home() {
         return data;
       } catch (error) {
         console.error(error);
-        throw new Error();
       }
     },
   });
@@ -46,7 +50,11 @@ export default function Home() {
     const lowerCaseValue = debouncedValue.toLowerCase();
 
     const filterByValue = (items: NationT[]) =>
-      items.filter(item => item.name.official.toLowerCase().includes(lowerCaseValue));
+      items.filter(
+        item =>
+          item.name.official.toLowerCase().includes(lowerCaseValue) ||
+          item.name.common.toLowerCase().includes(lowerCaseValue)
+      );
 
     const filterByRegion = (items: NationT[]) =>
       items.filter(item => item.region === optionValue);
@@ -129,7 +137,9 @@ export default function Home() {
       <Header>
         <Head>
           {debouncedValue !== ''
-            ? `Filtered Nation (${filteredNation.length})`
+            ? `Filtered Nation${filteredNation.length > 1 ? 's' : ''} (${
+                filteredNation.length
+              })`
             : 'All Nations'}
         </Head>
         <FilterBox>
@@ -144,14 +154,20 @@ export default function Home() {
           </ResetButton>
         </FilterBox>
       </Header>
-      {debouncedValue !== '' && filteredNation.length === 0 ? (
-        <NationNotFound />
+      {isError ? (
+        <Error />
       ) : (
-        <NationCardList>
-          {isLoading
-            ? Array.from({ length: 12 }, (_, idx) => <LoadingSkeleton key={idx} />)
-            : renderNationCards()}
-        </NationCardList>
+        <>
+          {debouncedValue !== '' && filteredNation.length === 0 ? (
+            <NationNotFound />
+          ) : (
+            <NationCardList>
+              {isLoading
+                ? Array.from({ length: 12 }, (_, idx) => <LoadingSkeleton key={idx} />)
+                : renderNationCards()}
+            </NationCardList>
+          )}
+        </>
       )}
     </Main>
   );

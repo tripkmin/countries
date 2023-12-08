@@ -30,12 +30,13 @@ import { motion } from 'framer-motion';
 import { fadeInUp } from 'styles/animation';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import Error from 'components/Error';
 
 export default function Nation() {
   const [transCount, setTransCount] = useState(0);
   const { name } = useParams();
 
-  const { data, isLoading } = useQuery<NationT>({
+  const { data, isLoading, isError } = useQuery<NationT>({
     queryKey: ['nation', name],
     queryFn: async () => {
       try {
@@ -46,7 +47,6 @@ export default function Nation() {
         return data[0];
       } catch (error) {
         console.error(error);
-        throw new Error();
       }
     },
   });
@@ -81,60 +81,74 @@ export default function Nation() {
 
   return (
     <Main>
-      <HeadSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
-        {isLoading ? (
-          <Skeleton width={350} height={210}></Skeleton>
-        ) : (
-          <Flag src={data?.flags.svg}></Flag>
-        )}
-        <Header>
-          {isLoading ? (
-            <Skeleton width={200}></Skeleton>
-          ) : (
-            <GlobalNamesBox>
-              <GlobalNames $transY={transCount}>
-                {getTranslations(data?.translations)?.map((globalName, idx) => (
-                  <p key={idx}>{globalName}</p>
-                ))}
-              </GlobalNames>
-            </GlobalNamesBox>
-          )}
+      {isError ? (
+        <Error />
+      ) : (
+        <>
+          <HeadSection
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            exit="exit">
+            {isLoading ? (
+              <Skeleton width={350} height={210}></Skeleton>
+            ) : (
+              <Flag src={data?.flags.svg}></Flag>
+            )}
+            <Header>
+              {isLoading ? (
+                <Skeleton width={200}></Skeleton>
+              ) : (
+                <GlobalNamesBox>
+                  <GlobalNames $transY={transCount}>
+                    {getTranslations(data?.translations)?.map((globalName, idx) => (
+                      <p key={idx}>{globalName}</p>
+                    ))}
+                  </GlobalNames>
+                </GlobalNamesBox>
+              )}
 
-          {isLoading ? (
-            <Skeleton width={300} height="2.5rem"></Skeleton>
-          ) : (
-            <NationName>{data?.name.official}</NationName>
-          )}
-        </Header>
-      </HeadSection>
-      <InfoSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
-        <SubHead>INFO</SubHead>
-        <NationInfoList>
-          {InfoData.map(item => (
-            <NationInfoCard isLoading={isLoading} key={item.key} nation={item} />
-          ))}
-        </NationInfoList>
-      </InfoSection>
-      <MapSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
-        <SubHead>MAPS</SubHead>
-        {isLoading ? (
-          <Skeleton width="100%" height={700}></Skeleton>
-        ) : (
-          <GoogleMapsWrapper>
-            <GoogleMaps latlng={data?.latlng}></GoogleMaps>
-          </GoogleMapsWrapper>
-        )}
+              {isLoading ? (
+                <Skeleton width={300} height="2.5rem"></Skeleton>
+              ) : (
+                <NationName>{data?.name.official}</NationName>
+              )}
+            </Header>
+          </HeadSection>
+          <InfoSection
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            exit="exit">
+            <SubHead>INFO</SubHead>
+            <NationInfoList>
+              {InfoData.map(item => (
+                <NationInfoCard isLoading={isLoading} key={item.key} nation={item} />
+              ))}
+            </NationInfoList>
+          </InfoSection>
+          <MapSection variants={fadeInUp} initial="initial" animate="animate" exit="exit">
+            <SubHead>MAPS</SubHead>
+            {isLoading ? (
+              <Skeleton width="100%" height={700}></Skeleton>
+            ) : (
+              <GoogleMapsWrapper>
+                <GoogleMaps latlng={data?.latlng}></GoogleMaps>
+              </GoogleMapsWrapper>
+            )}
 
-        <NationMapCard isLoading={isLoading} borderData={mapData}></NationMapCard>
-      </MapSection>
-      <ButtonSection>
-        <Link to="/">
-          <Button>
-            <IconArrowBack />
-            Back
-          </Button>
-        </Link>
-      </ButtonSection>
+            <NationMapCard isLoading={isLoading} borderData={mapData}></NationMapCard>
+          </MapSection>
+          <ButtonSection>
+            <Link to="/">
+              <Button>
+                <IconArrowBack />
+                Back
+              </Button>
+            </Link>
+          </ButtonSection>
+        </>
+      )}
     </Main>
   );
 }
@@ -163,10 +177,6 @@ const Flag = styled.img`
   -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
 `;
 
-const CoatOfArms = styled.img`
-  width: 75px;
-`;
-
 const GlobalNamesBox = styled.div`
   overflow: hidden;
 `;
@@ -180,6 +190,12 @@ const GlobalNames = styled.div<{ $transY: number }>`
   p {
     height: 28px;
     color: ${props => props.theme.font.secondary};
+  }
+
+  @media screen and (max-width: ${size.mobile}) {
+    p {
+      font-size: 14px;
+    }
   }
 `;
 

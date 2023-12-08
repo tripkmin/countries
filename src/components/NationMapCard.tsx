@@ -77,7 +77,8 @@ const MapHeader = styled.div`
 const Badge = styled(Link)`
   display: inline-block;
   font-size: 0.9rem;
-  padding: 1rem;
+  line-height: 180%;
+  padding: 0.5rem 1rem;
   border-radius: 10px;
   color: ${props => props.theme.font.primary};
   background-color: ${props => props.theme.background.button};
