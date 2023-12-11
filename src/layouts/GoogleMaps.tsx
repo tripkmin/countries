@@ -1,16 +1,23 @@
 import { Wrapper } from '@googlemaps/react-wrapper';
+import { IconServerError } from 'assets/icons';
 import styled from 'styled-components';
-import { timer } from 'styles/constants';
+import { size, timer } from 'styles/constants';
 import { LayoutProps } from 'types/type';
 
 export const GoogleMapsWrapper = ({ children }: LayoutProps) => {
-  const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+  const apiKey = process.env.REACT_APP_GOOGLE_API_KEYS;
 
   if (!apiKey) {
     return (
       <Warning>
-        <strong>Cannot display the map</strong>
-        <p>google maps api key missing</p>
+        <IconServerError width={100} height={100} color="#ff6d8d" />
+        <Head>Cannot display the map</Head>
+        <Body>
+          It seems like the developer may have entered the Google API key incorrectly or
+          exceeded the daily quota for the Google Maps API. This is a precautionary
+          measure to protect the assets of the poor developer. Your understanding is
+          appreciated.
+        </Body>
       </Warning>
     );
   }
@@ -20,19 +27,39 @@ export const GoogleMapsWrapper = ({ children }: LayoutProps) => {
 
 const Warning = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  padding: 3rem;
-  background-color: ${props => props.theme.background.secondary};
-  line-height: 180%;
+  align-items: center;
   text-align: center;
-  border-radius: 10px;
-  transition: background-color ${timer.default};
-  box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.05);
+  text-wrap: balance;
+  gap: 1rem;
+  padding: 6rem 0;
+  border-radius: 1rem;
+  fill: ${props => props.theme.font.primary};
+  background-color: ${props => props.theme.background.secondary};
+  transition: fill ${timer.default}, background-color ${timer.default};
 
-  strong {
-    font-weight: 700;
+  @media screen and (max-width: ${size.tablet}) {
+    flex-direction: column;
+    padding: 6rem 2rem;
+  }
+`;
+
+const Head = styled.h1`
+  line-height: 120%;
+
+  @media screen and (max-width: ${size.tablet}) {
+    font-size: 2.5rem;
+  }
+  @media screen and (max-width: ${size.mobile}) {
+    font-size: 2rem;
+  }
+`;
+
+const Body = styled.p`
+  width: 50%;
+  text-align: center;
+
+  @media screen and (max-width: ${size.tablet}) {
+    width: 100%;
   }
 `;
