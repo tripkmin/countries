@@ -11,10 +11,11 @@ import useDebounce from 'hooks/useDebounce';
 import styled from 'styled-components';
 import { size } from 'styles/constants';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { IconInfo, IconReset } from 'assets/icons';
+import { IconReset } from 'assets/icons';
 import LoadingSkeleton from 'components/LoadingSkeleton';
 import { FlatButton } from 'components/common/Button';
 import Error from 'components/Error';
+import NationNotFound from 'components/NationNotFound';
 
 export default function Home() {
   const {
@@ -107,7 +108,7 @@ export default function Home() {
   }, []);
   // 스크롤 이벤트 관련 끝
 
-  // 조건부 렌더링 로직 시작
+  // 조건부 렌더링 로직
   const renderNationCards = () => {
     if (debouncedValue === '' && optionValue === 'All') {
       return sliceData.map(nation => (
@@ -119,18 +120,6 @@ export default function Home() {
       ));
     }
   };
-
-  const NationNotFound = () => {
-    return (
-      <NotFoundBox>
-        <IconInfo />
-        <p>
-          No Nations found for <strong>'{debouncedValue}'</strong>
-        </p>
-      </NotFoundBox>
-    );
-  };
-  // 조건부 렌더링 로직 끝
 
   return (
     <Main>
@@ -159,7 +148,7 @@ export default function Home() {
       ) : (
         <>
           {debouncedValue !== '' && filteredNation.length === 0 ? (
-            <NationNotFound />
+            <NationNotFound debouncedValue={debouncedValue} />
           ) : (
             <NationCardList>
               {isLoading
@@ -195,15 +184,4 @@ const FilterBox = styled.div`
 const ResetButton = styled(FlatButton)`
   flex-shrink: 0;
   width: 40px;
-`;
-
-const NotFoundBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 6rem 0;
-  border-radius: 1rem;
-  fill: ${props => props.theme.font.primary};
-  background-color: ${props => props.theme.background.secondary};
 `;

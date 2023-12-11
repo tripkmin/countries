@@ -85,4 +85,8 @@ const NationMainSkeleton = styled(NationMain)``;
 const NationFooterSkeleton = styled(NationFooter)``;
 const NationDetailSkeleton = styled(NationDetail)`
   gap: 0;
+
+  @media screen and (max-width: ${size.mobile}) {
+    gap: 0.5rem;
+  }
 `;

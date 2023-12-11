@@ -15,7 +15,11 @@ export default function Search({ value, inputHandler: onChange }: SearchProps) {
         e.preventDefault();
       }}>
       <IconSearch />
-      <input type="text" value={value} onChange={onChange}></input>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        placeholder="Search for a country"></input>
     </SearchBox>
   );
 }
@@ -37,5 +41,9 @@ const SearchBox = styled.form`
     flex-grow: 1;
     background-color: inherit;
     color: inherit;
+
+    &::placeholder {
+      font-size: 14px;
+    }
   }
 `;

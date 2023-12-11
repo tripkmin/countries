@@ -21,6 +21,7 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 2rem;
   transition: background-color ${timer.default};
 `;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { timer } from 'styles/constants';
+import { size, timer } from 'styles/constants';
 
 export default function Error() {
   return (
@@ -21,20 +21,22 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  text-wrap: balance;
   gap: 2rem;
   transition: background-color ${timer.default};
 `;
 
 const Head = styled.h1`
-  &::after {
-    content: '';
-    width: 50%;
-    border-bottom: 1px solid ${props => props.theme.border.secondary};
-    transition: border-bottom ${timer.default};
-  }
+  line-height: 120%;
 `;
 
 const Body = styled.p`
-  width: 50%;
+  width: 60%;
   text-align: center;
+
+  @media screen and (max-width: ${size.tablet}) {
+    width: 100%;
+    padding: 2rem 1.2rem;
+  }
 `;
