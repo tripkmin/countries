@@ -5,7 +5,7 @@ import { size, timer } from 'styles/constants';
 import { LayoutProps } from 'types/type';
 
 export const GoogleMapsWrapper = ({ children }: LayoutProps) => {
-  const apiKey = process.env.REACT_APP_GOOGLE_API_KEYS;
+  const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   if (!apiKey) {
     return (
@@ -27,6 +27,7 @@ export const GoogleMapsWrapper = ({ children }: LayoutProps) => {
 
 const Warning = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -39,7 +40,6 @@ const Warning = styled.div`
   transition: fill ${timer.default}, background-color ${timer.default};
 
   @media screen and (max-width: ${size.tablet}) {
-    flex-direction: column;
     padding: 6rem 2rem;
   }
 `;
