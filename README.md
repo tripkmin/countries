@@ -33,11 +33,13 @@
   - Implemented Skeleton UI on Nation Card and Nation Detail Page
   - Used a custom function to intuitively shorten the population number on Nation Card
   - Applied fade-in-up effect when loading Nation Detail Page
-  - Enabled scrolling through multiple country names on Nation Detail Page
+  - Applied scrolling animation to display multiple country names for the respective country on the Nation Detail Page.
 - Rendering Optimization with useDebounce Hook
   - Applied a custom hook to delay search application by 300ms after completion of search term input
 - Load Entire Country Data Based on Scroll
   - Due to the absence of pagination in the REST Countries API, displayed data is split on the client side
+  - Globalized search term, option selection information, and data slice count using ContextAPI
+  - Ensured that the screen retains the same information (search term, option info, scroll position) even after going back from Nation Detail Page
 - Country Lookup Feature Using Google Maps API
 - Reset Button for Input/Option Initialization Functionality
 
@@ -82,11 +84,13 @@
   - Nation Card와 Nation Detail Page에서 Skeleton UI 적용
   - Nation Card의 인구 수를 커스텀 함수를 사용해 직관적으로 줄임
   - Nation Detail Page 로드 시 fade in up 효과 적용
-  - Nation Detail Page에서 해당 국가의 여러 국가명이 스크롤 오버됨
+  - Nation Detail Page에서 해당 국가의 여러 국가명이 스크롤되는 애니메이션 적용
 - useDebounce 훅을 통한 렌더링 최적화
-  - 검색어 입력이 완료되고 300ms 후 검색이 적용되도록 커스텀 훅을 적용함
+  - 검색어 입력이 완료되고 300ms 후 검색이 적용되도록 useDebounce 훅을 적용함
 - 스크롤에 맞게 전체 국가 데이터 로드
   - REST Countries API에서 페이지네이션을 제공하지 않아 데이터를 클라이언트 단에서 나눠서 보여줌
+  - 검색어, 옵션 선택 정보, 데이터 슬라이스 카운트를 ContextAPI를 사용해 전역변수화 시킴
+  - 이를 통해 Nation Detail Page를 들어갔다가 뒤로가기를 해도 들어가기 전 정보(검색어, 옵션 정보, 스크롤 위치)가 그대로 유지된 화면을 볼 수 있게 함.
 - Google Maps API를 이용한 해당 국가 조회 기능
 - Reset 버튼을 통한 input/option 초기화 기능
 
