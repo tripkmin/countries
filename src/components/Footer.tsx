@@ -6,12 +6,13 @@ import { FlatButton } from './common/Button';
 export default function Footer() {
   return (
     <FooterBox>
-      <p>© 2023, Powered by Vercel</p>
+      <p>© 2023 Countries REST API</p>
       <IconBox>
         <a
           href="https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca"
           target="_blank"
-          title="Frontend Mentor Challenge Page">
+          title="Frontend Mentor Challenge Page"
+        >
           <IconButton>
             <IconFrontEndMentor />
           </IconButton>
@@ -19,7 +20,8 @@ export default function Footer() {
         <a
           href="https://github.com/tripkmin/countries"
           target="_blank"
-          title="Minoff Github Repository">
+          title="Minoff Github Repository"
+        >
           <IconButton>
             <IconGithub />
           </IconButton>
