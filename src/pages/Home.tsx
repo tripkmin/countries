@@ -3,11 +3,10 @@ import { NationCardMemo } from 'components/NationCard';
 import Main from 'layouts/Main';
 import NationCardList from 'layouts/NationCardList';
 import Header from 'layouts/Option';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { NationT } from 'src/types/type';
 import Search from 'components/common/Search';
 import Select from 'components/common/Select';
-import useDebounce from 'hooks/useDebounce';
 import styled from 'styled-components';
 import { size } from 'styles/constants';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -16,6 +15,7 @@ import LoadingSkeleton from 'components/LoadingSkeleton';
 import { FlatButton } from 'components/common/Button';
 import Error from 'components/Error';
 import NationNotFound from 'components/NationNotFound';
+import QueryContext from 'contexts/QueryContext';
 
 export default function Home() {
   const {
@@ -35,16 +35,25 @@ export default function Home() {
     },
   });
 
+  const {
+    searchValue,
+    optionValue,
+    sliceCount,
+    setSearchValue,
+    setOptionValue,
+    setSliceCount,
+    debouncedValue,
+    initializeQueries,
+  } = useContext(QueryContext);
+
   const [filteredNation, setFilteredNation] = useState<NationT[]>([]);
-  const [searchValue, setSearchValue] = useState('');
-  const [optionValue, setOptionValue] = useState('All');
+
   // useDebounce 훅을 이용해 300ms 뒤에 debouncedValue에 value가 할당됨.
-  const debouncedValue = useDebounce(searchValue, 300);
   const REGIONS = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
   const SLICE_SIZE = 24;
-  const [sliceCount, setSliceCount] = useState(1);
   const sliceData = data.slice(0, SLICE_SIZE * sliceCount);
+  const sliceFilteredData = filteredNation.slice(0, SLICE_SIZE * sliceCount);
 
   // option, search 관련 시작
   useEffect(() => {
@@ -74,15 +83,12 @@ export default function Home() {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
+    setSliceCount(1);
   };
 
   const handleOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setOptionValue(e.target.value);
-  };
-
-  const optionResetHandler = () => {
-    setSearchValue('');
-    setOptionValue('All');
+    setSliceCount(1);
   };
   // option, search 관련 끝
 
@@ -90,13 +96,28 @@ export default function Home() {
   const handleScroll = () => {
     // window.scrollY가 지원되지 않는 브라우저에서는 scrollTop을 이용해 scrollPosition 계산
     const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    const is150pxLeft =
+      scrollPosition >= document.documentElement.scrollHeight - window.innerHeight - 150;
 
     if (
-      scrollPosition >=
-      document.documentElement.scrollHeight - window.innerHeight - 200
+      // 검색과 옵션 선택없이 스크롤할 때 sliceCount가 올라가는 로직
+      is150pxLeft &&
+      !debouncedValue &&
+      optionValue === 'All' &&
+      data.length > sliceData.length
+    ) {
+      setSliceCount(prevCount => prevCount + 1);
+    } else if (
+      // 검색어를 입력하거나 옵션을 선택했을 때 sliceCount가 올라가는 로직
+      is150pxLeft &&
+      (debouncedValue || optionValue !== 'All') &&
+      filteredNation.length > sliceFilteredData.length
     ) {
       setSliceCount(prevCount => prevCount + 1);
     }
+    // 이렇게 안하고 단순히 150px이 남았을 때 sliceCount가 올라가게 되면
+    // 하단으로부터 150px이 남았을 때 sliceCount가 올라가면서
+    // 불필요한 재렌더링이 되기 때문에 이와 같은 로직을 사용함.
   };
 
   useEffect(() => {
@@ -105,7 +126,7 @@ export default function Home() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [data, sliceData, filteredNation, sliceFilteredData]);
   // 스크롤 이벤트 관련 끝
 
   // 조건부 렌더링 로직
@@ -115,7 +136,7 @@ export default function Home() {
         <NationCardMemo key={nation.cca3} nation={nation} />
       ));
     } else {
-      return filteredNation.map(nation => (
+      return sliceFilteredData.map(nation => (
         <NationCardMemo key={nation.cca3} nation={nation} />
       ));
     }
@@ -138,7 +159,7 @@ export default function Home() {
             options={REGIONS}
             optionHandler={handleOptionChange}
           />
-          <ResetButton onClick={optionResetHandler}>
+          <ResetButton onClick={initializeQueries}>
             <IconReset />
           </ResetButton>
         </FilterBox>
@@ -148,7 +169,7 @@ export default function Home() {
       ) : (
         <>
           {debouncedValue !== '' && filteredNation.length === 0 ? (
-            <NationNotFound debouncedValue={debouncedValue} />
+            <NationNotFound />
           ) : (
             <NationCardList>
               {isLoading

@@ -11,6 +11,7 @@ import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import NotFound from 'pages/NotFound';
+import { QueryContextProvider } from './contexts/QueryContext';
 
 const queryClient = new QueryClient();
 
@@ -19,20 +20,23 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={themeMode[theme]}>
-        <SkeletonTheme
-          baseColor={themeMode[theme].skeleton.baseColor}
-          highlightColor={themeMode[theme].skeleton.highlightColor}>
-          <GlobalStyles />
-          <Navbar theme={theme} themeHandler={themeHandler} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/nation/:name" element={<Nation />} />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </SkeletonTheme>
-      </ThemeProvider>
+      <QueryContextProvider>
+        <ThemeProvider theme={themeMode[theme]}>
+          <SkeletonTheme
+            baseColor={themeMode[theme].skeleton.baseColor}
+            highlightColor={themeMode[theme].skeleton.highlightColor}
+          >
+            <GlobalStyles />
+            <Navbar theme={theme} themeHandler={themeHandler} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/nation/:name" element={<Nation />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </SkeletonTheme>
+        </ThemeProvider>
+      </QueryContextProvider>
     </QueryClientProvider>
   );
 }

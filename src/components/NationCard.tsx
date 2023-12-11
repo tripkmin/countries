@@ -63,7 +63,7 @@ export const Card = styled(Link)`
     width: 100%;
     padding: 15px;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     text-align: start;
   }
@@ -107,7 +107,8 @@ export const NationDescription = styled.div`
 
   @media screen and (max-width: ${size.mobile}) {
     gap: 0.5rem;
-    max-width: 60%;
+    flex-basis: 50%;
+    flex-grow: 1;
 
     & > :first-child::after {
       display: none;
